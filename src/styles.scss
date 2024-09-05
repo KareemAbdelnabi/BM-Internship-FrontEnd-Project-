@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.scss (or src/styles.sass if you're using SASS syntax) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* src/styles.scss */
+body {
+  font-family: 'Inter';
+  font-weight: 16px;
+}
