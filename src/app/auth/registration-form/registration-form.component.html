@@ -1,3 +1,7 @@
+<div class="login-header d-flex justify-content-between ">
+  <p class="small-title">Speedo Transfer</p>
+  <button class="close-btn d-flex justify-content-center align-items-center"><mat-icon>close</mat-icon></button>
+</div>
 <div class="container mt-5">
   <div class="card shadow p-4">
     <h2 class="small-title mb-3">Create Your Account</h2>
@@ -26,11 +30,18 @@
       </div>
       <div class="mb-3">
         <label class="body-medium form-label">Date of birth</label>
+        <!-- <div class="d-flex justify-content-between">
+          <label>Day</label>
+          <label>Month</label>
+          <label>Year</label>
+        </div> -->
         <div class="row">
           <div class="col">
+            <label for="day" class="body form-label">Day</label>
             <input type="text" class="form-control" placeholder="DD" >
           </div>
           <div class="col">
+            <label for="month" class="body form-label">Month</label>
             <select class="form-select" >
               <option>Month</option>
               <option>January</option>
@@ -49,6 +60,7 @@
             </select>
           </div>
           <div class="col">
+            <label for="year" class="body form-label">Year</label>
             <input type="text" class="form-control" placeholder="YYYY" >
           </div>
         </div>
