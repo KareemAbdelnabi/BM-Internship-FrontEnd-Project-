@@ -1,0 +1,83 @@
+<div class="container mt-5">
+  <div class="card shadow p-4">
+    <h2 class="small-title mb-3">Create Your Account</h2>
+    <p class="body">Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore.</p>
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="fullName" class="body form-label">Full name</label>
+        <input type="text" class="form-control" id="fullName" formControlName="fullName" placeholder="Full name">
+        <div *ngIf="registrationForm.get('fullName')?.invalid && registrationForm.get('fullName')?.touched">
+          <small class="text-danger">Full name is required</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="registrationEmail" class="body form-label">Email</label>
+        <input type="email" class="form-control" id="registrationEmail" formControlName="registrationEmail" placeholder="Email address">
+        <div *ngIf="registrationForm.get('registrationEmail')?.invalid && registrationForm.get('registrationEmail')?.touched">
+          <small class="text-danger" *ngIf="registrationForm.get('registrationEmail')?.errors?.['required']">Email is required</small>
+          <small class="text-danger" *ngIf="registrationForm.get('registrationEmail')?.errors?.['email']">Enter a valid email address</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="country" class="body form-label">Country</label>
+        <select class="form-select" id="country" formControlName="country">
+          <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="body-medium form-label">Date of birth</label>
+        <div class="row">
+          <div class="col">
+            <input type="text" class="form-control" placeholder="DD" >
+          </div>
+          <div class="col">
+            <select class="form-select" >
+              <option>Month</option>
+              <option>January</option>
+              <option>February</option>
+              <option>March</option>
+              <option>April</option>
+              <option>May</option>
+              <option>June</option>
+              <option>July</option>
+              <option>August</option>
+              <option>September</option>
+              <option>October</option>
+              <option>November</option>
+              <option>December</option>
+              <!-- Add other months -->
+            </select>
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="YYYY" >
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="registrationPassword" class="body form-label">Password</label>
+        <input type="password" class="form-control" id="registrationPassword" formControlName="registrationPassword" placeholder="Password">
+        <div *ngIf="registrationForm.get('registrationPassword')?.invalid && registrationForm.get('registrationPassword')?.touched">
+          <small class="text-danger" *ngIf="registrationForm.get('registrationPassword')?.errors?.['required']">Password is required</small>
+          <small class="text-danger" *ngIf="registrationForm.get('registrationPassword')?.errors?.['minlength']">Password must be at least 6 characters long</small>
+          <small class="text-danger" *ngIf="registrationForm.get('registrationPassword')?.errors?.['passwordStrength']">{{ registrationForm.get('registrationPassword')?.errors?.['passwordStrength'] }}</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="confirmPassword" class="body form-label">Confirm password</label>
+        <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm password">
+        <div *ngIf="registrationForm.hasError('mismatch') && registrationForm.get('confirmPassword')?.touched">
+          <small class="text-danger">Passwords do not match</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <small class="small-font">
+          The password should be at least six characters long. To make it stronger, use upper and lower case letters, numbers, and symbols like ! ? $ % ^ & .
+        </small>
+      </div>
+      <button type="submit" class="submit-btn w-100" [disabled]="registrationForm.invalid">Create Account</button>
+      <div class="mt-3 text-center">
+        <small>Already have an account? <a href="#">Login</a></small>
+      </div>
+    </form>
+  </div>
+</div>
