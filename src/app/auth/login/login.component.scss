@@ -1,84 +1,127 @@
-.login-container {
-  display: flex;
+@import '../../../styles/typography.scss';
+@import '../../../styles/colors.scss';
+
+.login-header{
+  margin: 4rem;
+  @media (max-width: 768px) {
+    margin: 1rem;
+  }
+  @media (max-width: 1200px) {
+    margin: 2rem;
+  }
+}
+.close-btn{
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: $gray-900;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+
+  &:hover {
+    background-color: $gray-40;
+  }
+}
+.container {
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: transparent;
-  font: Inter;
+}
 
-  .login-header {
-    text-align: center;
-    margin-bottom: 2vh;
+.card {
+  border-radius: 0.5rem;
+  background-color: white;
+  width: 45%;
+  margin: auto;
 
-    h1 {
-      font-size: 32px;
-    }
-
-    p {
-      color: #565552;
-
-      a {
-        color: #800000;
-        text-decoration: underline;
-      }
-    }
+  @media (max-width: 1200px) {
+    width: 55%; // Between 1200px and below
   }
 
-  .login-box {
-    background: white;
-    padding: 4vh 2vw 4vh 2vw;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    width: 30vw;
-
-    h1 {
-      font-size: 32px;
-      margin-bottom: 3vh;
-    }
-
-    p {
-      margin-bottom: 2vh;
-      color: #565552;
-    }
-
-    .form-group {
-      margin-bottom: 2vh;
-
-      label {
-        display: block;
-        margin-bottom: 2vh;
-      }
-
-      input {
-        width: 100%;
-        padding: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-sizing: border-box;
-        color: #898886;
-        font-size: 1rem;
-      }
-    }
-
-    .login-btn {
-      width: 100%;
-      padding: 1rem;
-      background-color: #800000;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      box-sizing: border-box;
-      font-size: 1rem;
-
-      &:hover {
-        background-color: #990000;
-      }
-    }
-
-    a {
-      color: #800000;
-      text-decoration: underline;
-    }
+  @media (max-width: 768px) {
+    width: 90%; // Tablet size
   }
+
+}
+
+.input-group {
+  position: relative;
+
+  .btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+  }
+}
+
+
+
+a {
+  color: $primary-300;
+  text-decoration: underline;
+
+  &:hover {
+    color: $primary-400;
+  }
+}
+
+.btn-primary {
+  background-color: $primary-300;
+  border: none;
+
+  &:hover {
+    background-color: $primary-400;
+  }
+}
+
+
+
+
+// Use the mixins in your styles
+h1 {
+  @include h1;
+}
+
+h2 {
+  @include h2;
+}
+
+h3 {
+  @include h3;
+}
+
+.title {
+  @include title;
+}
+
+.title-2 {
+  @include title2;
+}
+
+.small-title {
+  @include small-title;
+}
+
+.small-title-2 {
+  @include small-title2;
+}
+
+p {
+  @include paragraph;
+}
+
+p.bold {
+  @include paragraph-bold;
+}
+
+.body {
+  @include body;
+}
+
+.body.medium {
+  @include body-medium;
+}
+
+.small-font {
+  @include small-font;
 }
