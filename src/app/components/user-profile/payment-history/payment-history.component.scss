@@ -1,0 +1,72 @@
+@import '../../../../styles/typography.scss';
+@import '../../../../styles/colors';
+
+// Card styles
+.card {
+  width: 40vw;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between; /* Space items to the far left and right */
+  align-items: center; /* Align items vertically center */
+  padding: 0.75rem; /* Adjust padding as needed */
+}
+
+.file-icon {
+  margin-left: 8px; /* Add space between the text and the icon if needed */
+  font-size: 1.5rem; /* Adjust size as needed */
+  cursor: pointer;
+}
+
+// Card header and body text colors
+.header-color {
+  color: $gray-900;
+}
+
+.info-color {
+  color: $gray-600;
+}
+
+// Flexbox layout for card body
+.card-body {
+  display: flex;
+  justify-content: space-between; /* Space items evenly */
+  padding: 1rem; /* Add some padding if needed */
+}
+
+.info-left,
+.info-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Align items vertically center */
+}
+
+.info-left {
+  align-items: flex-start; /* Align items to the left */
+}
+
+.info-right {
+  align-items: flex-end; /* Align items to the right */
+}
+
+// General typography mixins
+h1 {
+  @include small-title;
+}
+
+p {
+  @include paragraph;
+}
+
+p.bold {
+  @include paragraph-bold;
+}
+
+.body {
+  @include body;
+}
+
+.body.medium {
+  @include body-medium;
+}

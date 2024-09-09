@@ -1,0 +1,52 @@
+@import '../../../../styles/typography.scss';
+@import '../../../../styles/colors.scss';
+
+
+.container{
+  width: 100vh;
+}
+.nav-tabs {
+  .nav-link {
+    color: $primary-300;
+    &.active {
+      font-weight: bold;
+      border-bottom: 2px solid $primary-300;
+    }
+  }
+}
+
+.btn-primary {
+  width: 180px;
+  height: 60px;
+  background-color:$primary-300;
+  border-color: $primary-300;
+  &:hover {
+    background-color: $primary-500;
+    border-color: $primary-500;
+  }
+}
+
+.form-control{
+color: $gray-500;
+}
+
+.form-label{
+  color: $gray-900;
+}
+// Use the mixins in your styles
+
+.small-title {
+  @include small-title;
+}
+
+p {
+  @include paragraph;
+}
+
+.body {
+  @include body;
+}
+
+.body.medium {
+  @include body-medium;
+}

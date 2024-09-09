@@ -1,0 +1,124 @@
+@import '../../../styles/typography.scss';
+@import '../../../styles/colors.scss';
+
+
+.container {
+  height: 80vh;
+  display: flex; /* Ensure the sidebar and content are in a flex container */
+
+  .col-3 {
+    border-right: 1px solid #ddd; /* Vertical line between sidebar and content */
+    padding: 0; /* Remove padding if there's any */
+    margin: 0; /* Remove margin if there's any */
+    height: 100%; /* Ensure full height of the container */
+    width: 20vw;
+  }
+
+  .col-9 {
+    padding-left: 20px; /* Adjust padding as needed */
+    flex: 1; /* Allow the content area to expand */
+    display: flex;
+    flex-direction: column; /* Ensure content is laid out in a column */
+  }
+  .list-group-item {
+    font-size: 1.2rem;
+    border: none;
+    color: #000;
+    border-bottom: 1px solid #ddd; /* Horizontal line between items */
+    transition: background-color 0.3s; /* Smooth background color transition */
+
+    &:last-child {
+      border-bottom: none; /* Remove border from the last item */
+    }
+
+    &:hover {
+      background-color: $gray-40; /* Change to a light gray */
+      border-radius: 0;
+      cursor: pointer;
+    }
+  }
+
+  .content {
+    background-color: #fff;
+    border-radius: 5px;
+    flex: 1; /* Allow content to expand and fill the space */
+  }
+
+  /* Balance specific styling for My Profile section */
+  .balance {
+    font-size: 2.5rem;
+    color: #b22222;
+  }
+
+  .content h2 {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .content p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Use the mixins in your styles
+h1 {
+  @include h1;
+}
+
+h2 {
+  @include h2;
+}
+
+h3 {
+  @include h3;
+}
+
+.title {
+  @include title;
+}
+
+.title-2 {
+  @include title2;
+}
+
+.small-title {
+  @include small-title;
+}
+
+.small-title-2 {
+  @include small-title2;
+}
+
+p {
+  @include paragraph;
+}
+
+p.bold {
+  @include paragraph-bold;
+}
+
+.body {
+  @include body;
+}
+
+.body.medium {
+  @include body-medium;
+}
+
+.small-font {
+  @include small-font;
+}
