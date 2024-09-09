@@ -1,16 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MatIconModule],
+  imports: [ReactiveFormsModule, CommonModule, MatIconModule, RouterOutlet],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  loginObj: any={
+    "userEmail":"",
+    "userPassword":""
+  }
+
+  http=inject(HttpClient)
   loginForm: FormGroup;
   showPassword: boolean = false; // To toggle password visibility
 
@@ -44,11 +52,23 @@ export class LoginComponent {
       this.loginForm.markAllAsTouched();
       return;
     }
-
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': '*/*'
+    });
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
+    this.loginObj = {
+      userEmail: email,
+      userPassword: password
+    };
     console.log('Logging in with email:', email, 'and password:', password);
+    this.http.post("https://moneytransferapplication-production.up.railway.app/auth/login", this.loginObj, { headers: headers }).subscribe((res: any) => {
+      console.log(res);
+      console.log(res.result);
+    });
   }
+
 
   // Method to toggle password visibility
   togglePasswordVisibility() {

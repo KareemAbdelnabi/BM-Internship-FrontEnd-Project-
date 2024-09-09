@@ -14,7 +14,7 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="mb-3">
         <label for="email" class="body form-label">Your email address</label>
-        <input type="email" id="email" formControlName="email" class="form-control" placeholder="Email@gmail.com" />
+        <input type="email" id="email" formControlName="email" class="form-control" [(ngModel)]="loginObj.userEmail" placeholder="Email@gmail.com" />
         <div *ngIf="email?.invalid && email?.touched">
           <small *ngIf="email?.errors?.['required']" class="text-danger">Email is required</small>
           <small *ngIf="email?.errors?.['email']" class="text-danger">Enter a valid email address</small>
@@ -27,6 +27,7 @@
           <input
             [type]="showPassword ? 'text' : 'password'"
             id="password"
+            [(ngModel)]="loginObj.userPassword"
             formControlName="password"
             class="form-control"
             placeholder="**********"
@@ -42,7 +43,7 @@
       <button type="submit" class="btn btn-primary w-100">Login</button>
     </form>
 
-    <p class="mt-3 body">Don't have an account? <a href="#">Create Account</a></p>
+    <p class="mt-3 body">Don't have an account? <a href="/signUp">Create Account</a></p>
   </div>
 </div>
 </div>
