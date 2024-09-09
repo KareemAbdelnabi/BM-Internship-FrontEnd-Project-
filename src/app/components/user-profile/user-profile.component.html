@@ -1,19 +1,20 @@
-<div class="container border mt-5">
+<app-navbar></app-navbar>
+<div class="container border mt-5 mb-5">
   <div class="row">
     <!-- Sidebar -->
     <div class="col-3">
       <div class="list-group">
         <a class="body-medium list-group-item list-group-item-action text-decoration-none"
-           routerLink="/profile" routerLinkActive="active" href="/my-profile">My Profile</a>
+           routerLink="/profile" routerLinkActive="active" href="/user-profile/my-profile">My Profile</a>
 
         <a class="body-medium list-group-item list-group-item-action text-decoration-none"
-           routerLink="/payments-history" routerLinkActive="active" href="/payments-history">Payments History</a>
+           routerLink="/payments-history" routerLinkActive="active" href="/user-profile/payments-history">Payments History</a>
 
         <a class="body-medium list-group-item list-group-item-action text-decoration-none"
-           routerLink="/settings" routerLinkActive="active" href="/settings">Settings</a>
+           routerLink="/settings" routerLinkActive="active" href="/user-profile/settings">Settings</a>
 
         <a class="body-medium list-group-item list-group-item-action text-decoration-none"
-           routerLink="/change-password" routerLinkActive="active" href="/change-password">Change Password</a>
+           routerLink="/change-password" routerLinkActive="active" href="/user-profile/change-password">Change Password</a>
       </div>
     </div>
 
@@ -25,3 +26,6 @@
     </div>
   </div>
 </div>
+
+<app-mobileappshared></app-mobileappshared>
+<app-footer></app-footer>

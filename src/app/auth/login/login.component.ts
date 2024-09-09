@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, 
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,9 @@ export class LoginComponent {
     "userPassword":""
   }
 
-  http=inject(HttpClient)
+  http = inject(HttpClient);
+  router = inject(Router); // Inject the Router service
+
   loginForm: FormGroup;
   showPassword: boolean = false; // To toggle password visibility
 
@@ -69,10 +71,14 @@ export class LoginComponent {
     });
   }
 
-
   // Method to toggle password visibility
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
+  }
+
+  // Method to handle the close button click
+  onCloseClick() {
+    this.router.navigate(['/home']); // Navigate to the home page
   }
 
   get email() {

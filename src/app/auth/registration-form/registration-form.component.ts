@@ -1,19 +1,23 @@
-import { Component } from '@angular/core';
+import { Component,inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-
+import { Router, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-registration-form',
   templateUrl: './registration-form.component.html',
   styleUrls: ['./registration-form.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MatIconModule]
+  imports: [ReactiveFormsModule, CommonModule, MatIconModule, RouterOutlet]
 })
 export class RegistrationFormComponent {
   registrationForm: FormGroup;
   countries: string[] = ['Egypt','UK', 'USA', 'Canada', 'Australia', 'Germany', 'France', 'India', 'Japan', 'Brazil', 'Mexico', 'China', 'South Korea', 'Italy', 'Russia'];
+
+
+  router = inject(Router); // Inject the Router service
+
 
   constructor(private fb: FormBuilder) {
     this.registrationForm = this.fb.group({
@@ -44,6 +48,9 @@ export class RegistrationFormComponent {
     return password === confirmPassword ? null : { mismatch: true };
   }
 
+  onCloseClick() {
+    this.router.navigate(['/home']); // Navigate to the home page
+  }
   onSubmit() {
     if (this.registrationForm.valid) {
       console.log(this.registrationForm.value);

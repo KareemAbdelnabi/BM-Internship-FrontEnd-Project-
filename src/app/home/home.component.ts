@@ -2,11 +2,14 @@ import { Component, OnInit, Inject, PLATFORM_ID, ViewEncapsulation } from '@angu
 import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
+import { MobileappsharedComponent } from "../mobileappshared/mobileappshared.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NavbarComponent, FooterComponent, MobileappsharedComponent],
   templateUrl: './home.component.html',
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./home.component.scss'],
@@ -61,7 +64,7 @@ export class HomeComponent implements OnInit {
 // import { isPlatformBrowser } from '@angular/common';
 
 // // Assuming you have a service to handle authentication and user data
-// import { AuthService } from '../services/auth.service'; 
+// import { AuthService } from '../services/auth.service';
 
 // @Component({
 //   selector: 'app-home',
@@ -75,7 +78,7 @@ export class HomeComponent implements OnInit {
 //   currentBalance: number = 0; // Initialize with 0
 
 //   constructor(
-//     private authService: AuthService, 
+//     private authService: AuthService,
 //     @Inject(PLATFORM_ID) private platformId: Object
 //   ) {}
 
@@ -89,7 +92,7 @@ export class HomeComponent implements OnInit {
 
 //       if (this.hasToken) {
 //         this.currentBalance = this.authService.getUserBalance(); // Fetch balance (replace with your logic)
-//       } 
+//       }
 //     }
 //   }
 
