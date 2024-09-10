@@ -1,21 +1,23 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { NavbarComponent } from '../navbar/navbar.component';
+import { MobileappsharedComponent } from '../mobileappshared/mobileappshared.component';
+import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-money-transfer',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, NavbarComponent, MobileappsharedComponent, FooterComponent],
   templateUrl: './money-transfer.component.html',
   styleUrls: ['./money-transfer.component.scss'],
 })
 export class MoneyTransferComponent {
-  step: number = 1; 
-  amount: number = 1000; 
+  step: number = 1;
+  amount: number = 1000;
   recipientName: string = '';
   recipientAccount: string = '';
-  senderName: string = 'Jonathan Smith'; 
-  senderAccount: string = 'xxxx7890'; 
+  senderName: string = 'Jonathan Smith';
+  senderAccount: string = 'xxxx7890';
 
   showFavorites: boolean = false;
 

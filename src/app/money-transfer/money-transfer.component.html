@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="header-section">
     <div class="header-content">
       <div class="title">
@@ -15,7 +16,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="step-container">
     <!-- Stepper navigation -->
     <div class="stepper">
@@ -28,7 +29,7 @@
       <span>Confirmation</span>
       <span>Payment</span>
     </div>
-  
+
     <!-- Amount Step -->
     <div *ngIf="step === 1" class="form-container">
       <h2>How much are you sending?</h2>
@@ -37,7 +38,7 @@
           <label for="amount">Amount</label>
           <input type="number" [(ngModel)]="amount" name="amount" id="amount" />
         </div>
-  
+
         <h3 class="recipient-info-header">
             Recipient Information
             <button type="button" (click)="toggleFavorites()" class="favorite-button">
@@ -45,8 +46,8 @@
               Favourite
             </button>
           </h3>
-          
-        
+
+
 <div class="favorite-list" *ngIf="showFavorites">
   <h4>Favourite List</h4>
   <div
@@ -65,7 +66,7 @@
     </div>
   </div>
 </div>
-  
+
         <div class="form-group">
           <label for="recipientName">Recipient Name</label>
           <input
@@ -75,7 +76,7 @@
             id="recipientName"
           />
         </div>
-  
+
         <div class="form-group">
           <label for="recipientAccount">Recipient Account</label>
           <input
@@ -85,20 +86,20 @@
             id="recipientAccount"
           />
         </div>
-  
+
         <button type="submit"class="confirm-button">Continue</button>
       </form>
     </div>
-  
+
     <!-- Confirmation Step -->
 <div *ngIf="step === 2" class="confirmation-container">
     <h2>Confirmation</h2>
-  
+
     <div class="total-amount">
       <span>Total amount</span>
       <span>{{ amount }} EGP</span>
     </div>
-  
+
     <div class="transaction-info">
       <div class="account-info from">
         <img src="bankIcon.png" alt="Bank Icon" class="bank-icon" />
@@ -108,11 +109,11 @@
           <p class="account-number">{{ senderAccount }}</p>
         </div>
       </div>
-  
+
       <div class="swap-icon">
         <img src="swapIcon.png" alt="Swap Icon" />
       </div>
-  
+
       <div class="account-info to">
         <img src="bankIcon.png" alt="Bank Icon" class="bank-icon" />
         <div>
@@ -122,7 +123,7 @@
         </div>
       </div>
     </div>
-  
+
     <button (click)="nextStep()" class="confirm-button">Confirm</button>
     <button (click)="previousStep()" class="back-button">Back</button>
   </div>
@@ -133,7 +134,7 @@
     </div>
     <h2>Your transfer was successful</h2>
     <h3 class="transfer-amount">{{ amount }} EGP</h3>
-  
+
     <div class="transaction-details">
       <div class="account-info from">
         <img src="bankIcon.png" alt="Bank Icon" class="bank-icon" />
@@ -143,11 +144,11 @@
           <p class="account-number">{{ senderAccount }}</p>
         </div>
       </div>
-      
+
       <div class="swap-icon">
         <img src="swapIcon.png" alt="Swap Icon" />
       </div>
-      
+
       <div class="account-info to">
         <img src="bankIcon.png" alt="Bank Icon" class="bank-icon" />
         <div>
@@ -157,17 +158,18 @@
         </div>
       </div>
     </div>
-  
+
     <div class="total-amount-info">
       <p>Transfer amount</p>
       <p>{{ amount }} EGP</p>
     </div>
-  
+
     <button (click)="reset()" class="back-button">Back to Home</button>
     <button (click)="addToFavourites()" class="favourite-button">Add To Favourite</button>
   </div>
 
+</div>
+<app-mobileappshared></app-mobileappshared>
+<app-footer></app-footer>
 
-
-  
   <!-- <app-footer></app-footer> -->
