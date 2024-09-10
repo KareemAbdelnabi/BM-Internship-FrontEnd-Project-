@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
 
   checkToken() {
     if (isPlatformBrowser(this.platformId)) {
-      const token = localStorage.getItem('authToken');
+      const token = localStorage.getItem('token');
       this.hasToken = !!token;
 
       if (this.hasToken) {
@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
 
   logout() {
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.removeItem('authToken');
+      localStorage.removeItem('token');
     }
     this.router.navigate(['/login']);
   }

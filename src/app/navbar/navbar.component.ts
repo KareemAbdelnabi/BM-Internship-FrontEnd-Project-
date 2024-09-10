@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
 
   checkToken() {
     if (isPlatformBrowser(this.platformId)) {
-      const token = localStorage.getItem('authToken');
+      const token = localStorage.getItem('token');
       this.tokenExists = !!token;
 
       if (!this.tokenExists) {
@@ -44,7 +44,7 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.removeItem('authToken'); 
+      localStorage.removeItem('token'); 
     }
     this.router.navigate(['/login']); 
     this.showDropdown = false; 
