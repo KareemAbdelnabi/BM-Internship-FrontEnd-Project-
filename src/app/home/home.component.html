@@ -1,1 +1,86 @@
-<p>help works!</p>
+<app-navbar></app-navbar>
+<section class="hero">
+  <div class="overlay">
+    <div class="container hero-content">
+      <div class="text-content">
+        <p class="tagline">Simple. Quick. Secure.</p>
+        <h1>Send Money Anywhere, Instantly</h1>
+        <p>
+          Fast, secure, and affordable international money transfers. Get
+          started in minutes
+        </p>
+        <button class="btn primary-btn">{{ buttonLabel }}</button>
+      </div>
+
+      <div class="form-content">
+        <form>
+          <div class="form-group balance-container" *ngIf="hasToken">
+            <label for="currentBalance" class="balance-label"
+              >Current Balance</label
+            >
+            <div class="balance-display">{{ currentBalance }}EGP</div>
+          </div>
+
+          <div class="form-group">
+            <label for="sendAmount">Send Amount</label>
+            <input type="number" id="sendAmount" placeholder="1000" />
+          </div>
+
+          <div class="form-group">
+            <label for="deliveryDate" class="delivery-label"
+              >Delivery Time:
+              <span class="delivery-date">By May 20th</span>
+            </label>
+          </div>
+
+          <button class="btn secondary-btn">{{ buttonLabel }}</button>
+
+          <p class="terms">
+            By Clicking Continue, I agree with <a href="#">Terms & Policy</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="getting-started">
+  <div class="container">
+    <h2>Getting Started</h2>
+    <p>Lorem Ipsum is simply dummy text of the printing.</p>
+    <div class="steps">
+      <div class="step">
+        <img src="createpic.png" alt="Create Account Icon" />
+        <div class="step-text">
+          <h3><span class="number">1.</span> Create Account</h3>
+          <p>
+            Adipisicing elit id neque mi diam nim etus arcu porta veniam pretium
+            auctor ut et nam sed.
+          </p>
+        </div>
+      </div>
+      <div class="step">
+        <img src="confirmicon.png" alt="Confirmation Icon" />
+        <div class="step-text">
+          <h3><span class="number">2.</span> Confirmation</h3>
+          <p>
+            Adipisicing elit id neque mi diam nim etus arcu porta veniam pretium
+            auctor ut et nam sed.
+          </p>
+        </div>
+      </div>
+      <div class="step">
+        <img src="paymenticon.png" alt="Payment Icon" />
+        <div class="step-text">
+          <h3><span class="number">3.</span> Payment</h3>
+          <p>
+            Adipisicing elit id neque mi diam nim etus arcu porta veniam pretium
+            auctor ut et nam sed.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-mobileappshared></app-mobileappshared>
+<app-footer></app-footer>

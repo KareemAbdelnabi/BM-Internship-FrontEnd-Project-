@@ -1,0 +1,64 @@
+<div class="login-header d-flex justify-content-between ">
+  <p class="small-title">Speedo Transfer</p>
+  <button class="close-btn d-flex justify-content-center align-items-center" (click)="onCloseClick()"><mat-icon>close</mat-icon></button>
+</div>
+<div class="container mt-5">
+  <div class="card shadow p-4 mb-5">
+    <h2 class="small-title mb-3">Create Your Account</h2>
+    <p class="body">Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore.</p>
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="username" class="body form-label">Username</label>
+        <input type="text" class="form-control" id="username" formControlName="username" placeholder="Username">
+        <div *ngIf="registrationForm.get('username')?.invalid && registrationForm.get('username')?.touched">
+          <small class="text-danger">Username is required</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="body form-label">Email</label> <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email address"> 
+        <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
+          <small class="text-danger" *ngIf="registrationForm.get('email')?.errors?.['required']">Email is required</small>
+          <small class="text-danger" *ngIf="registrationForm.get('email')?.errors?.['email']">Enter a valid email address</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="country" class="body form-label">Country</label>
+        <select class="form-select" id="country" formControlName="country">
+          <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="dateOfBirth" class="body form-label">Date of Birth</label>
+        <input type="date" class="form-control" id="dateOfBirth" formControlName="dateOfBirth">
+        <div *ngIf="registrationForm.get('dateOfBirth')?.invalid && registrationForm.get('dateOfBirth')?.touched">
+          <small class="text-danger">Date of Birth is required</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="body form-label">Password</label> 
+        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password"> 
+        <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
+          <small class="text-danger" *ngIf="registrationForm.get('password')?.errors?.['required']">Password is required</small>
+          <small class="text-danger" *ngIf="registrationForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long</small>
+          <small class="text-danger" *ngIf="registrationForm.get('password')?.errors?.['passwordStrength']">{{ registrationForm.get('password')?.errors?.['passwordStrength'] }}</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="confirmPassword" class="body form-label">Confirm password</label>
+        <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm password">
+        <div *ngIf="registrationForm.hasError('mismatch') && registrationForm.get('confirmPassword')?.touched">
+          <small class="text-danger">Passwords do not match</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <small class="small-font">
+          The password should be at least six characters long. To make it stronger, use upper and lower case letters, numbers, and symbols like ! ? $ % ^ & .
+        </small>
+      </div>
+      <button type="submit" class="submit-btn w-100" [disabled]="registrationForm.invalid">Create Account</button>
+      <div class="mt-3 text-center">
+        <small>Already have an account? <a href="/login">Login</a></small>
+      </div>
+    </form>
+  </div>
+</div>

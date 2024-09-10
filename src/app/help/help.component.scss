@@ -1,0 +1,65 @@
+@import '../../styles/typography.scss';
+@import '../../styles/colors';
+
+.help-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+  height: 80vh;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+p {
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+.contact-options {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  align-items: stretch; /* Ensures all child elements have the same height */
+}
+
+.contact-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute space between items */
+}
+
+.icon-container {
+  align-self: center; /* Center the icon within its container */
+  background-color: #fce8e8;
+  border-radius: 12px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.contact-option h3 {
+  margin: 0; /* Remove default margin */
+}
+
+.contact-option p {
+  margin: 0; /* Remove default margin */
+}
