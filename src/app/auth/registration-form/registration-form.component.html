@@ -8,18 +8,17 @@
     <p class="body">Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore.</p>
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
       <div class="mb-3">
-        <label for="fullName" class="body form-label">Full name</label>
-        <input type="text" class="form-control" id="fullName" formControlName="fullName" placeholder="Full name">
-        <div *ngIf="registrationForm.get('fullName')?.invalid && registrationForm.get('fullName')?.touched">
-          <small class="text-danger">Full name is required</small>
+        <label for="username" class="body form-label">Username</label>
+        <input type="text" class="form-control" id="username" formControlName="username" placeholder="Username">
+        <div *ngIf="registrationForm.get('username')?.invalid && registrationForm.get('username')?.touched">
+          <small class="text-danger">Username is required</small>
         </div>
       </div>
       <div class="mb-3">
-        <label for="registrationEmail" class="body form-label">Email</label>
-        <input type="email" class="form-control" id="registrationEmail" formControlName="registrationEmail" placeholder="Email address">
-        <div *ngIf="registrationForm.get('registrationEmail')?.invalid && registrationForm.get('registrationEmail')?.touched">
-          <small class="text-danger" *ngIf="registrationForm.get('registrationEmail')?.errors?.['required']">Email is required</small>
-          <small class="text-danger" *ngIf="registrationForm.get('registrationEmail')?.errors?.['email']">Enter a valid email address</small>
+        <label for="email" class="body form-label">Email</label> <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email address"> 
+        <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
+          <small class="text-danger" *ngIf="registrationForm.get('email')?.errors?.['required']">Email is required</small>
+          <small class="text-danger" *ngIf="registrationForm.get('email')?.errors?.['email']">Enter a valid email address</small>
         </div>
       </div>
       <div class="mb-3">
@@ -29,49 +28,19 @@
         </select>
       </div>
       <div class="mb-3">
-        <label class="body-medium form-label">Date of birth</label>
-        <!-- <div class="d-flex justify-content-between">
-          <label>Day</label>
-          <label>Month</label>
-          <label>Year</label>
-        </div> -->
-        <div class="row">
-          <div class="col">
-            <label for="day" class="body form-label">Day</label>
-            <input type="text" class="form-control" placeholder="DD" >
-          </div>
-          <div class="col">
-            <label for="month" class="body form-label">Month</label>
-            <select class="form-select" >
-              <option>Month</option>
-              <option>January</option>
-              <option>February</option>
-              <option>March</option>
-              <option>April</option>
-              <option>May</option>
-              <option>June</option>
-              <option>July</option>
-              <option>August</option>
-              <option>September</option>
-              <option>October</option>
-              <option>November</option>
-              <option>December</option>
-              <!-- Add other months -->
-            </select>
-          </div>
-          <div class="col">
-            <label for="year" class="body form-label">Year</label>
-            <input type="text" class="form-control" placeholder="YYYY" >
-          </div>
+        <label for="dateOfBirth" class="body form-label">Date of Birth</label>
+        <input type="date" class="form-control" id="dateOfBirth" formControlName="dateOfBirth">
+        <div *ngIf="registrationForm.get('dateOfBirth')?.invalid && registrationForm.get('dateOfBirth')?.touched">
+          <small class="text-danger">Date of Birth is required</small>
         </div>
       </div>
       <div class="mb-3">
-        <label for="registrationPassword" class="body form-label">Password</label>
-        <input type="password" class="form-control" id="registrationPassword" formControlName="registrationPassword" placeholder="Password">
-        <div *ngIf="registrationForm.get('registrationPassword')?.invalid && registrationForm.get('registrationPassword')?.touched">
-          <small class="text-danger" *ngIf="registrationForm.get('registrationPassword')?.errors?.['required']">Password is required</small>
-          <small class="text-danger" *ngIf="registrationForm.get('registrationPassword')?.errors?.['minlength']">Password must be at least 6 characters long</small>
-          <small class="text-danger" *ngIf="registrationForm.get('registrationPassword')?.errors?.['passwordStrength']">{{ registrationForm.get('registrationPassword')?.errors?.['passwordStrength'] }}</small>
+        <label for="password" class="body form-label">Password</label> 
+        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password"> 
+        <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
+          <small class="text-danger" *ngIf="registrationForm.get('password')?.errors?.['required']">Password is required</small>
+          <small class="text-danger" *ngIf="registrationForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long</small>
+          <small class="text-danger" *ngIf="registrationForm.get('password')?.errors?.['passwordStrength']">{{ registrationForm.get('password')?.errors?.['passwordStrength'] }}</small>
         </div>
       </div>
       <div class="mb-3">

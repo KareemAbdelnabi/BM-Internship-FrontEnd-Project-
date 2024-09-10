@@ -13,16 +13,16 @@ import { Router, RouterOutlet } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  loginObj: any={
-    "userEmail":"",
-    "userPassword":""
+  loginObj: any = {
+    "email": "",
+    "password": ""
   }
 
   http = inject(HttpClient);
-  router = inject(Router); // Inject the Router service
+  router = inject(Router);
 
   loginForm: FormGroup;
-  showPassword: boolean = false; // To toggle password visibility
+  showPassword: boolean = false;
 
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
@@ -31,7 +31,6 @@ export class LoginComponent {
     });
   }
 
-  // Custom validator to check for password strength
   passwordStrengthValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.value;
     if (!password) {
@@ -54,31 +53,45 @@ export class LoginComponent {
       this.loginForm.markAllAsTouched();
       return;
     }
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': '*/*'
     });
+
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
     this.loginObj = {
-      userEmail: email,
-      userPassword: password
+      email: email, 
+      password: password 
     };
+
     console.log('Logging in with email:', email, 'and password:', password);
-    this.http.post("https://moneytransferapplication-production.up.railway.app/auth/login", this.loginObj, { headers: headers }).subscribe((res: any) => {
-      console.log(res);
-      console.log(res.result);
-    });
+
+    this.http.post("https://moneytransferapplication-production.up.railway.app/auth/login", this.loginObj, { headers: headers }).subscribe(
+      (response: any) => {
+        console.log('Login successful:', response);
+
+        // Store token and username in local storage
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('username', response.username);
+
+        // Navigate to the desired route after successful login
+        this.router.navigate(['/home']); 
+      },
+      (error) => {
+        console.error('Login failed:', error);
+        // Handle login error (e.g., display error message)
+      }
+    );
   }
 
-  // Method to toggle password visibility
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
 
-  // Method to handle the close button click
   onCloseClick() {
-    this.router.navigate(['/home']); // Navigate to the home page
+    this.router.navigate(['/home']); 
   }
 
   get email() {
