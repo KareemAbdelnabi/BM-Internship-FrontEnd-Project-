@@ -1,1 +1,173 @@
-<p>money-transfer works!</p>
+<div class="header-section">
+    <div class="header-content">
+      <div class="title">
+        <h1>Money Transfer</h1>
+        <div class="breadcrumb">
+          <span>Home</span>
+          <span>•</span>
+          <span>About Us</span>
+          <span>•</span>
+          <span class="active">Payment</span>
+        </div>
+      </div>
+      <div class="header-image">
+        <img src="coin.png" alt="Money Transfer Icon" />
+      </div>
+    </div>
+  </div>
+  
+  <div class="step-container">
+    <!-- Stepper navigation -->
+    <div class="stepper">
+      <span [class.active]="step === 1">01</span>
+      <span [class.active]="step === 2">02</span>
+      <span [class.active]="step === 3">03</span>
+    </div>
+    <div class="stepper-labels">
+      <span>Amount</span>
+      <span>Confirmation</span>
+      <span>Payment</span>
+    </div>
+  
+    <!-- Amount Step -->
+    <div *ngIf="step === 1" class="form-container">
+      <h2>How much are you sending?</h2>
+      <form (ngSubmit)="nextStep()" class="form-content">
+        <div class="form-group">
+          <label for="amount">Amount</label>
+          <input type="number" [(ngModel)]="amount" name="amount" id="amount" />
+        </div>
+  
+        <h3 class="recipient-info-header">
+            Recipient Information
+            <button type="button" (click)="toggleFavorites()" class="favorite-button">
+              <img src="star.png" alt="Favorite Icon" class="favorite-icon" />
+              Favourite
+            </button>
+          </h3>
+          
+        
+<div class="favorite-list" *ngIf="showFavorites">
+  <h4>Favourite List</h4>
+  <div
+    class="favorite-item"
+    *ngFor="let favorite of favorites"
+    (click)="selectFavorite(favorite)"
+  >
+    <div class="favorite-item-content">
+      <div class="favorite-icon">
+        <img src="bankIcon.png" alt="Bank Icon" class="favorite-icon" />
+      </div>
+      <div class="favorite-details">
+        <p>{{ favorite.name }}</p>
+        <p>{{ favorite.account }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+  
+        <div class="form-group">
+          <label for="recipientName">Recipient Name</label>
+          <input
+            type="text"
+            [(ngModel)]="recipientName"
+            name="recipientName"
+            id="recipientName"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="recipientAccount">Recipient Account</label>
+          <input
+            type="text"
+            [(ngModel)]="recipientAccount"
+            name="recipientAccount"
+            id="recipientAccount"
+          />
+        </div>
+  
+        <button type="submit"class="confirm-button">Continue</button>
+      </form>
+    </div>
+  
+    <!-- Confirmation Step -->
+<div *ngIf="step === 2" class="confirmation-container">
+    <h2>Confirmation</h2>
+  
+    <div class="total-amount">
+      <span>Total amount</span>
+      <span>{{ amount }} EGP</span>
+    </div>
+  
+    <div class="transaction-info">
+      <div class="account-info from">
+        <img src="bankIcon.png" alt="Bank Icon" class="bank-icon" />
+        <div>
+          <p class="label">From</p>
+          <p>{{ senderName }}</p>
+          <p class="account-number">{{ senderAccount }}</p>
+        </div>
+      </div>
+  
+      <div class="swap-icon">
+        <img src="swapIcon.png" alt="Swap Icon" />
+      </div>
+  
+      <div class="account-info to">
+        <img src="bankIcon.png" alt="Bank Icon" class="bank-icon" />
+        <div>
+          <p class="label">To</p>
+          <p>{{ recipientName }}</p>
+          <p class="account-number">{{ recipientAccount }}</p>
+        </div>
+      </div>
+    </div>
+  
+    <button (click)="nextStep()" class="confirm-button">Confirm</button>
+    <button (click)="previousStep()" class="back-button">Back</button>
+  </div>
+ <!-- Payment Step -->
+<div *ngIf="step === 3" class="payment-container">
+    <div class="success-icon">
+      <img src="successIcon.png" alt="Success Icon" />
+    </div>
+    <h2>Your transfer was successful</h2>
+    <h3 class="transfer-amount">{{ amount }} EGP</h3>
+  
+    <div class="transaction-details">
+      <div class="account-info from">
+        <img src="bankIcon.png" alt="Bank Icon" class="bank-icon" />
+        <div>
+          <h4>From</h4>
+          <p>{{ senderName }}</p>
+          <p class="account-number">{{ senderAccount }}</p>
+        </div>
+      </div>
+      
+      <div class="swap-icon">
+        <img src="swapIcon.png" alt="Swap Icon" />
+      </div>
+      
+      <div class="account-info to">
+        <img src="bankIcon.png" alt="Bank Icon" class="bank-icon" />
+        <div>
+          <h4>To</h4>
+          <p>{{ recipientName }}</p>
+          <p class="account-number">{{ recipientAccount }}</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="total-amount-info">
+      <p>Transfer amount</p>
+      <p>{{ amount }} EGP</p>
+    </div>
+  
+    <button (click)="reset()" class="back-button">Back to Home</button>
+    <button (click)="addToFavourites()" class="favourite-button">Add To Favourite</button>
+  </div>
+
+
+
+  
+  <!-- <app-footer></app-footer> -->

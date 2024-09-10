@@ -1,0 +1,103 @@
+// _typography.scss
+
+// Define base typography settings
+$font-family: 'Inter', sans-serif;
+$base-font-size: 16px;
+$line-height-multiplier: 1.5; // 150%
+
+// Headings
+@mixin h1 {
+  font-family: $font-family;
+  font-size: 64px;
+  font-weight: 600; // Semi Bold
+  line-height: 150%;
+}
+
+@mixin h2 {
+  font-family: $font-family;
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 150%;
+}
+
+@mixin h3 {
+  font-family: $font-family;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 150%;
+}
+
+// Titles
+@mixin title {
+  font-family: $font-family;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 150%;
+}
+
+@mixin title2 {
+  font-family: $font-family;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 150%;
+}
+
+// Small Titles
+@mixin small-title {
+  font-family: $font-family;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 150%;
+}
+
+@mixin small-title2 {
+  font-family: $font-family;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 150%;
+}
+
+// Paragraphs
+@mixin paragraph {
+  font-family: $font-family;
+  font-size: 20px;
+  font-weight: 400; // Regular
+  line-height: 150%;
+}
+
+@mixin paragraph-bold {
+  font-family: $font-family;
+  font-size: 20px;
+  font-weight: 600; // Semi Bold
+  line-height: 150%;
+}
+
+// Body Text
+@mixin body {
+  font-family: $font-family;
+  font-size: 16px;
+  font-weight: 400; // Regular
+  line-height: 150%;
+}
+
+@mixin body-medium {
+  font-family: $font-family;
+  font-size: 16px;
+  font-weight: 500; // Medium
+  line-height: 150%;
+}
+
+@mixin body2 {
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+// Small Font
+@mixin small-font {
+  font-family: $font-family;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 150%;
+}

@@ -1,0 +1,82 @@
+@import '../../../../styles/typography.scss';
+@import '../../../../styles/colors';
+
+
+
+.profile-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.user-info{
+  color: $gray-300;
+}
+
+.user-label{
+  color: $gray-700;
+}
+.balance {
+  font-size: 4rem;
+  color: black;
+
+  .currency {
+    font-size: 2rem;
+  }
+
+  .balance-label {
+    font-size: 1.5rem;
+    color: $primary-400;
+    margin-left: 5px;
+  }
+}
+
+
+
+// Use the mixins in your styles
+h1 {
+  @include h1;
+}
+
+h2 {
+  @include h2;
+}
+
+h3 {
+  @include h3;
+}
+
+.title {
+  @include title;
+}
+
+.title-2 {
+  @include title2;
+}
+
+.small-title {
+  @include small-title;
+}
+
+.small-title-2 {
+  @include small-title2;
+}
+
+p {
+  @include paragraph;
+}
+
+p.bold {
+  @include paragraph-bold;
+}
+
+.body {
+  @include body;
+}
+
+.body.medium {
+  @include body-medium;
+}
+
+.small-font {
+  @include small-font;
+}

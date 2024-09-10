@@ -1,0 +1,128 @@
+@import '../../styles/typography.scss';
+@import '../../styles/colors';
+
+.header-section {
+  background-image: url("/homebackg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #f3e9ebd6;
+    z-index: 1;
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+    align-items: center;
+    z-index: 2;
+
+    .title {
+      h1 {
+        font-size: 48px;
+        font-weight: 600;
+        color: #24221e;
+        margin-bottom: 10px;
+        font-family: "Inter", sans-serif;
+      }
+
+      .breadcrumb {
+        font-size: 16px;
+        color: #666;
+
+        span {
+          margin: 0 5px;
+        }
+
+        .active {
+          color: #871e35;
+          font-weight: 500;
+          font-family: "Inter", sans-serif;
+        }
+      }
+    }
+
+    .header-image {
+      img {
+        width: 150px;
+        height: auto;
+      }
+    }
+  }
+}
+.help-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+  height: 80vh;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+p {
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+.contact-options {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  align-items: stretch; /* Ensures all child elements have the same height */
+}
+
+.contact-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute space between items */
+}
+
+.icon-container {
+  align-self: center; /* Center the icon within its container */
+  background-color: #fce8e8;
+  border-radius: 12px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.contact-option h3 {
+  margin: 0; /* Remove default margin */
+}
+
+.contact-option p {
+  margin: 0; /* Remove default margin */
+}
