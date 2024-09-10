@@ -9,21 +9,34 @@
     </ul>
     <div class="auth-buttons" *ngIf="!tokenExists">
       <button mat-button routerLink="/login">Log In</button>
-      <button mat-raised-button color="primary" routerLink="/register">Register Now</button>
+      <button mat-raised-button color="primary" routerLink="/register">
+        Register Now
+      </button>
     </div>
 
     <div class="profile-section" *ngIf="tokenExists">
-      <div class="profile-icon">JS</div>
-      <div class="profile-name">Jonathon Smith</div>
-      <img class="dropdown-icon" src="/Icon.png" alt="Dropdown Arrow" (click)="toggleDropdown()">
-
-    <div class="dropdown-menu" *ngIf="showDropdown">
-      <a routerLink="/my-account">My Account</a>
-      <a routerLink="/payment-history">Payment History</a>
-      <a routerLink="/settings">Setting</a>
-      <a routerLink="/change-password">Change Password</a>
-      <a (click)="logout()">Logout</a>
-  </div>
+      <div class="profile-icon">
+        {{
+          username && username.length >= 2
+            ? username.slice(0, 2).toUpperCase()
+            : "JS"
+        }}
       </div>
+      <div class="profile-name">{{ username || "Jonathon Smith" }}</div>
+      <img
+        class="dropdown-icon"
+        src="/Icon.png"
+        alt="Dropdown Arrow"
+        (click)="toggleDropdown()"
+      />
+
+      <div class="dropdown-menu" *ngIf="showDropdown">
+        <a routerLink="/my-account">My Account</a>
+        <a routerLink="/payment-history">Payment History</a>
+        <a routerLink="/settings">Setting</a>
+        <a routerLink="/change-password">Change Password</a>
+        <a (click)="logout()">Logout</a>
+      </div>
+    </div>
   </div>
 </nav>
