@@ -2,6 +2,69 @@
 @import '../../../styles/colors.scss';
 
 
+.header-section {
+  background-image: url("/homebackg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #f3e9ebd6;
+    z-index: 1;
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+    align-items: center;
+    z-index: 2;
+
+    .title {
+      h1 {
+        font-size: 48px;
+        font-weight: 600;
+        color: #24221e;
+        margin-bottom: 10px;
+        font-family: "Inter", sans-serif;
+      }
+
+      .breadcrumb {
+        font-size: 16px;
+        color: #666;
+
+        span {
+          margin: 0 5px;
+        }
+
+        .active {
+          color: #871e35;
+          font-weight: 500;
+          font-family: "Inter", sans-serif;
+        }
+      }
+    }
+
+    .header-image {
+      img {
+        width: 150px;
+        height: auto;
+      }
+    }
+  }
+}
 .container {
   height: 80vh;
   display: flex; /* Ensure the sidebar and content are in a flex container */
@@ -36,6 +99,16 @@
       border-radius: 0;
       cursor: pointer;
     }
+
+    &.active {
+      background-color: green; /* Change to green */
+      font-weight: bold; /* Make the text bold */
+    }
+  }
+
+  .list-group-item.active {
+    background-color: green;
+    font-weight: bold;
   }
 
   .content {
