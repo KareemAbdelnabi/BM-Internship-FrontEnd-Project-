@@ -62,8 +62,8 @@ export class LoginComponent {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
     this.loginObj = {
-      email: email, 
-      password: password 
+      email: email,
+      password: password
     };
 
     console.log('Logging in with email:', email, 'and password:', password);
@@ -73,11 +73,12 @@ export class LoginComponent {
         console.log('Login successful:', response);
 
         // Store token and username in local storage
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('username', response.username);
+        sessionStorage.setItem('token', response.token);
+        sessionStorage.setItem('username', response.username);
+        localStorage.setItem('id', response.id);
 
         // Navigate to the desired route after successful login
-        this.router.navigate(['/home']); 
+        this.router.navigate(['/home']);
       },
       (error) => {
         console.error('Login failed:', error);
@@ -91,7 +92,7 @@ export class LoginComponent {
   }
 
   onCloseClick() {
-    this.router.navigate(['/home']); 
+    this.router.navigate(['/home']);
   }
 
   get email() {
