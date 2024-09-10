@@ -1,3 +1,4 @@
+<div>
 <div class="login-header d-flex justify-content-between ">
   <p class="small-title">Speedo Transfer</p>
   <button class="close-btn d-flex justify-content-center align-items-center" (click)="onCloseClick()"><mat-icon>close</mat-icon></button>
@@ -15,7 +16,7 @@
         </div>
       </div>
       <div class="mb-3">
-        <label for="email" class="body form-label">Email</label> <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email address"> 
+        <label for="email" class="body form-label">Email</label> <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email address">
         <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
           <small class="text-danger" *ngIf="registrationForm.get('email')?.errors?.['required']">Email is required</small>
           <small class="text-danger" *ngIf="registrationForm.get('email')?.errors?.['email']">Enter a valid email address</small>
@@ -35,8 +36,8 @@
         </div>
       </div>
       <div class="mb-3">
-        <label for="password" class="body form-label">Password</label> 
-        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password"> 
+        <label for="password" class="body form-label">Password</label>
+        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
         <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
           <small class="text-danger" *ngIf="registrationForm.get('password')?.errors?.['required']">Password is required</small>
           <small class="text-danger" *ngIf="registrationForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long</small>
@@ -61,4 +62,8 @@
       </div>
     </form>
   </div>
+</div>
+<footer class="mt-auto py-3 text-center">
+  <p class="mb-0 body-medium">© Speedo Transfer Payments Limited 2024</p>
+</footer>
 </div>
