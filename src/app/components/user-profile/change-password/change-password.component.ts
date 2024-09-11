@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChangePasswordService } from '../../../services/change-password.service'; // Import the service
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-change-password',
@@ -13,7 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class ChangePasswordComponent implements OnInit {
   passwordForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private changePasswordService: ChangePasswordService) {
+  constructor(private formBuilder: FormBuilder, private changePasswordService: ChangePasswordService,private toastr: ToastrService) {
     this.passwordForm = this.formBuilder.group({
       currentPassword: ['', Validators.required],
       newPassword: ['', Validators.required]
@@ -35,6 +36,7 @@ export class ChangePasswordComponent implements OnInit {
         this.changePasswordService.changePassword(id, token, currentPassword, newPassword).subscribe(
           response => {
             console.log('Password changed successfully:', response);
+            this.toastr.success('Password changed successfully!','Success');
           },
           error => {
             console.error('Error changing password:', error);
