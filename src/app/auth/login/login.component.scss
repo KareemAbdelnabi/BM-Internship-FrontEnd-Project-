@@ -16,6 +16,19 @@ html, body {
   flex: 1; // This will push the footer to the bottom
 }
 
+.icon{
+  width: 48px;
+  height: 48px;
+}
+
+.logged-out{
+  width: 45%;
+  background-color: $gray-40;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+}
+
 footer {
   background-color: $primary-50;
   padding: 1rem;

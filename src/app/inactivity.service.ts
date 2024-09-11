@@ -5,7 +5,7 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root'
 })
 export class InactivityService {
-  private inactivityTime: number = 1200000; // 2 minutes in milliseconds
+  private inactivityTime: number = 120000; // 2 minutes in milliseconds
   private timer: any;
 
   constructor(
@@ -38,10 +38,9 @@ export class InactivityService {
     }, this.inactivityTime);
   }
 
-  // Log out the user and clear session storage
   private logoutUser(): void {
     sessionStorage.removeItem('token'); // Clear the token
-    this.router.navigate(['/login']); // Redirect to login page
-    window.alert('You have been logged out due to inactivity.');
+    this.router.navigate(['/login'], { queryParams: { loggedOut: true } });
   }
+
 }

@@ -7,13 +7,37 @@
       </button>
     </div>
     <div class="container d-flex justify-content-center align-items-center vh-5 mb-5">
-      <div class="text-center mb-4">
+      <div *ngIf="!showLoggedOutMessage" class="text-center mb-4">
         <h1 class="title-2">Login</h1>
         <p>New Account? <a href="/register">Sign Up</a></p>
       </div>
+
+      <div *ngIf="showLoggedOutMessage" class="logged-out p-5 mb-5">
+        <span class="icon">
+          <svg width="49" height="48" viewBox="0 0 49 48" fill="none" xmlns="http://www.w3.org/2000/svg" >
+            <circle cx="24.8281" cy="24" r="24" fill="#24221E"/>
+            <path d="M28.6648 35.1304C28.6648 37.2383 26.9785 38.9667 24.8285 38.9667C22.6784 38.9667 20.9922 37.2383 20.9922 35.1304C20.9922 33.0226 22.6785 31.2942 24.8285 31.2942C26.9784 31.2942 28.6648 33.0226 28.6648 35.1304ZM26.5866 27.4579H23.0304C22.5033 27.4579 22.0693 27.0433 22.0452 26.5168L21.2923 10.0665C21.2666 9.50474 21.7152 9.03516 22.2775 9.03516H27.377C27.9403 9.03516 28.3891 9.50611 28.3621 10.0688L27.5716 26.5189C27.5464 27.0446 27.1128 27.4579 26.5866 27.4579Z" fill="white"/>
+          </svg>
+        </span>
+        <p class="mx-5 paragraph-bold">
+          We logged you out because you were inactive for 2 minutes - it’s to help your account secure
+        </p>
+        <span class="icon">
+          <svg width="49" height="48" viewBox="0 0 49 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon">
+            <path d="M14.4414 34.4876L24.9274 24.0016L35.4134 34.4876M35.4134 13.5156L24.9254 24.0016L14.4414 13.5156" stroke="#24221E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </div>
+
       <div class="card shadow p-4">
-        <h1 class="mb-3 mt-3 small-title">Login here</h1>
-        <p class="text-muted mb-4 body">Welcome back! Login to your account</p>
+        <div *ngIf="!showLoggedOutMessage">
+        <h1 class="mb-3 mt-3 small-title">Welcome back</h1>
+        <p class="text-muted mb-4 body">Login to your account</p>
+        </div>
+        <div *ngIf="showLoggedOutMessage">
+          <h1 class="mb-3 mt-3 small-title">Login here</h1>
+          <p class="text-muted mb-4 body">Welcome back! Login to your account</p>
+          </div>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="mb-3">
             <label for="email" class="body form-label">Your email address</label>
@@ -50,8 +74,9 @@
 
           <button type="submit" class="btn btn-primary w-100">Login</button>
         </form>
-
+        <div *ngIf="!showLoggedOutMessage">
         <p class="mt-3 body">Don't have an account? <a href="/register">Create Account</a></p>
+        </div>
       </div>
     </div>
     <footer class="mt-auto py-3 text-center">

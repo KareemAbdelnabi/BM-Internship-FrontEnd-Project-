@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterOutlet } from '@angular/router';
 import { LoginService } from '../../services/login.service';  // Import the service
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,18 +13,27 @@ import { LoginService } from '../../services/login.service';  // Import the serv
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   showPassword: boolean = false;
+  showLoggedOutMessage: boolean = false; // Property to control message visibility
 
-  // Inject the service and router
+  // Inject the service, router, and route
   loginService = inject(LoginService);
   router = inject(Router);
+  route = inject(ActivatedRoute);
 
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6), this.passwordStrengthValidator]]
+    });
+  }
+
+  ngOnInit(): void {
+    // Check if 'loggedOut' query parameter is present
+    this.route.queryParams.subscribe(params => {
+      this.showLoggedOutMessage = params['loggedOut'] === 'true';
     });
   }
 

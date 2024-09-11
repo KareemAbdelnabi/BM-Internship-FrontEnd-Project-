@@ -1,17 +1,24 @@
-
 <div class="profile-content" *ngIf="userProfile">
   <h1 class="profile-title small-title-2">My Profile</h1>
 
-  <!-- Display the balance -->
   <h1 class="h1 balance">{{ balance }} {{ userProfile.accounts[0]?.currency }}<span class="balance-label small-title">Balance</span></h1>
 
-  <!-- Display the user's name -->
-  <p><strong class="body-medium user-label">First Name :</strong><span class="user-info">{{ userProfile.name }}</span></p>
-
-  <!-- Display the user's email -->
-  <p><strong class="body-medium user-label">Email :</strong><span class="user-info">{{ userProfile.email }}</span></p>
-
-  <!-- You can add more fields as necessary -->
-  <p><strong class="body-medium user-label">Phone :</strong><span class="user-info"> +880125412624</span></p>
-  <p><strong class="body-medium user-label">Gender :</strong><span class="user-info"> Male</span></p>
+  <div class="profile-info">
+    <div class="info-row">
+      <span class="user-label body-medium">First Name :</span>
+      <span class="user-info body">{{ userProfile.name }}</span>
+    </div>
+    <div class="info-row">
+      <span class="user-label">Email :</span>
+      <span class="user-info">{{ userProfile.email }}</span>
+    </div>
+    <div class="info-row">
+      <span class="user-label">Phone :</span>
+      <span class="user-info">+880125412624</span>
+    </div>
+    <div class="info-row">
+      <span class="user-label">Gender :</span>
+      <span class="user-info">Male</span>
+    </div>
+  </div>
 </div>
