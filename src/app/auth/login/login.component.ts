@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, RouterOutlet } from '@angular/router';
+import { LoginService } from '../../services/login.service';  // Import the service
 
 @Component({
   selector: 'app-login',
@@ -13,16 +13,12 @@ import { Router, RouterOutlet } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  loginObj: any = {
-    "email": "",
-    "password": ""
-  }
-
-  http = inject(HttpClient);
-  router = inject(Router);
-
   loginForm: FormGroup;
   showPassword: boolean = false;
+
+  // Inject the service and router
+  loginService = inject(LoginService);
+  router = inject(Router);
 
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
@@ -54,30 +50,20 @@ export class LoginComponent {
       return;
     }
 
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': '*/*'
-    });
-
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
-    this.loginObj = {
-      email: email,
-      password: password
-    };
 
-    console.log('Logging in with email:', email, 'and password:', password);
-
-    this.http.post("https://moneytransferapplication-production.up.railway.app/auth/login", this.loginObj, { headers: headers }).subscribe(
+    // Use the login service to perform the login
+    this.loginService.login(email, password).subscribe(
       (response: any) => {
         console.log('Login successful:', response);
 
-        // Store token and username in local storage
+        // Store token and username in session/local storage
         sessionStorage.setItem('token', response.token);
         sessionStorage.setItem('username', response.username);
         localStorage.setItem('id', response.id);
 
-        // Navigate to the desired route after successful login
+        // Navigate to the home page after successful login
         this.router.navigate(['/home']);
       },
       (error) => {
