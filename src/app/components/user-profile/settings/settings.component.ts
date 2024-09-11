@@ -19,10 +19,10 @@ export class SettingsComponent implements OnInit {
     private profileService: ProfileService // Inject the service
   ) {
     this.settingsForm = this.formBuilder.group({
-      fullName: ['', Validators.required],
-      country: ['', Validators.required],
+      fullName: ['Loading...', Validators.required],
+      country: ['Loading...', Validators.required],
       phone: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]]
+      email: ['Loading...', [Validators.required, Validators.email]]
     });
   }
 
