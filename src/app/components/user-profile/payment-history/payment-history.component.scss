@@ -4,6 +4,7 @@
 // Card styles
 .card {
   width: 40vw;
+  border: none;
 }
 
 .card-header {
@@ -22,6 +23,7 @@
 // Card header and body text colors
 .header-color {
   color: $gray-900;
+  background-color: $primary-50;
 }
 
 .info-color {

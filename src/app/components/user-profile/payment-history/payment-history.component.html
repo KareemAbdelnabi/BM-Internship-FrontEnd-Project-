@@ -1,18 +1,26 @@
 <div>
   <h1 class="small-title">Payment History</h1>
-  <div class="card mb-4">
-    <div class="card-header body-medium header-color">
-      <span class="account-number">Account Number: 6785 4987 6543</span>
-      <mat-icon class="file-icon">file_copy</mat-icon>
-    </div>
-    <div class="card-body">
-      <div class="info-left">
-        <p class="mb-0 body-medium header-color">Account Details</p>
-        <p class="mb-0 body info-color">Recipient Name</p>
+  <div *ngIf="loading" class="loading-state">
+    <p>Loading...</p> <!-- Display a loading message -->
+  </div>
+  <!-- <div *ngIf="!loading && paymentHistory.length === 0">
+    <p>No payment history available.</p>
+  </div> -->
+  <div *ngIf="!loading && paymentHistory.length > 0">
+    <div *ngFor="let transaction of paymentHistory" class="card mb-4">
+      <div class="card-header body-medium header-color">
+        <span class="account-number">Account Number: {{ transaction.accountNumber }}</span>
+        <mat-icon class="file-icon" (click)="copyToClipboard(transaction.accountNumber)">file_copy</mat-icon>
       </div>
-      <div class="info-right">
-        <p class="mb-0 body-medium header-color">Total Price: 1000EGP</p>
-        <p class="mb-0 body info-color">Jonathon Smith</p>
+      <div class="card-body">
+        <div class="info-left">
+          <p class="mb-0 body-medium">Account Details</p>
+          <p class="mb-0 body info-color">Recipient Name</p>
+        </div>
+        <div class="info-right">
+          <p class="mb-0 body-medium">{{ transaction.amount }} EGP</p>
+          <p class="mb-0 body info-color">{{ transaction.recipientName }}</p>
+        </div>
       </div>
     </div>
   </div>
