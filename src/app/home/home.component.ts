@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, PLATFORM_ID, ViewEncapsulation } from '@angu
 import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http'; // Import HttpClient
+import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { MobileappsharedComponent } from "../mobileappshared/mobileappshared.component";
@@ -17,12 +17,12 @@ import { MobileappsharedComponent } from "../mobileappshared/mobileappshared.com
 })
 export class HomeComponent implements OnInit {
   hasToken: boolean = false;
-  currentBalance: number = 0; // Initialize to 0
+  currentBalance: number = 0; 
 
   constructor(
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private http: HttpClient // Inject HttpClient
+    private http: HttpClient 
   ) {}
 
   ngOnInit() {
@@ -36,30 +36,28 @@ export class HomeComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       const token = sessionStorage.getItem('token');
       this.hasToken = !!token;
-
-      if (this.hasToken) {
-        this.fetchCurrentBalance();
+  
+      if (this.hasToken && token) {  
+        this.fetchCurrentBalance(token); 
       }
     }
   }
 
-  fetchCurrentBalance() {
-    const userId = localStorage.getItem('id'); 
-
-    if (userId) {
-      this.http.get(`https://moneytransferapplication-production.up.railway.app/users/test/${userId}`)
-        .subscribe((response: any) => {
-          if (response && response.accounts && response.accounts.length > 0) {
-            this.currentBalance = response.accounts[0].balance;
-          } else {
-            console.error('No account information found in the API response.');
-          }
-        }, (error) => {
-          console.error('Error fetching balance:', error);
-        });
-    } else {
-      console.error('User ID not found in local storage.');
-    }
+  fetchCurrentBalance(token: string) {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}` 
+    });
+  
+    this.http.get('https://moneytransferapplication-production.up.railway.app/users/id', { headers })
+      .subscribe((response: any) => {
+        if (response && response.accounts && response.accounts.length > 0) {
+          this.currentBalance = response.accounts[0].balance;
+        } else {
+          console.error('No account information found in the API response.');
+        }
+      }, (error) => {
+        console.error('Error fetching balance:', error);
+      });
   }
 
   get buttonLabel1(): string {
@@ -73,10 +71,11 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['/register']); 
     }
   }
+  
   get buttonLabel(): string {
     return this.hasToken ? 'Continue' : 'Continue';
-    
   }
+
   onButtonClick() {
     if (this.hasToken) {
       this.router.navigate(['/money-transfer']); 

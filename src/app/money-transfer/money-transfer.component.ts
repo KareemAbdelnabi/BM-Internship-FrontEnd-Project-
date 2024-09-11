@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { MobileappsharedComponent } from '../mobileappshared/mobileappshared.component';
 import { FooterComponent } from '../footer/footer.component';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -39,6 +39,7 @@ export class MoneyTransferComponent implements OnInit {
 
   fetchSenderDetails() {
     if (isPlatformBrowser(this.platformId)) {
+      const token = sessionStorage.getItem('token');
       const userId = localStorage.getItem('id');
 
       if (userId) {
@@ -46,7 +47,12 @@ export class MoneyTransferComponent implements OnInit {
         this.senderAccount = localStorage.getItem('senderAccount') || '';
 
         if (!this.senderName || !this.senderAccount) {
-          this.http.get(`https://moneytransferapplication-production.up.railway.app/users/test/${userId}`)
+          const headers = new HttpHeaders({
+            'Authorization': `Bearer ${token}`
+          });
+
+          // Updated with the static API URL
+          this.http.get('https://moneytransferapplication-production.up.railway.app/users/id', { headers })
             .subscribe((response: any) => {
               if (response && response.accounts && response.accounts.length > 0) {
                 this.senderName = response.name;
