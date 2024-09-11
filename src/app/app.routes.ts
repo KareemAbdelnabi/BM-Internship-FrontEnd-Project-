@@ -12,6 +12,7 @@ import { PaymentHistoryComponent } from './components/user-profile/payment-histo
 import { MyProfileComponent } from './components/user-profile/my-profile/my-profile.component';
 import { ChangePasswordComponent } from './components/user-profile/change-password/change-password.component';
 import { RegistrationFormComponent } from './auth/registration-form/registration-form.component';
+import { ErrorComponent } from './error/error.component';
 // import { RegisterComponent } from './register/register.component';
 // import { NotFoundComponent } from './not-found/not-found.component'; // Assuming you have a 404 component
 
@@ -38,5 +39,5 @@ export const routes: Routes = [
 
   // Add more routes as needed for other parts of your application
 
-  //   { path: '**', component: NotFoundComponent }, // Wildcard route for handling 404s
+     { path: '**', component: ErrorComponent }, // Wildcard route for handling 404s
 ];
