@@ -1,27 +1,20 @@
 @import '../../../../styles/typography.scss';
 @import '../../../../styles/colors';
 
-
+.profile-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
 
 .profile-title {
   font-size: 1.5rem;
   margin-bottom: 20px;
 }
 
-.user-info{
-  color: $gray-300;
-}
-
-.user-label{
-  color: $gray-700;
-}
 .balance {
   font-size: 4rem;
   color: black;
-
-  .currency {
-    font-size: 2rem;
-  }
+  margin-bottom: 30px;
 
   .balance-label {
     font-size: 1.5rem;
@@ -30,6 +23,30 @@
   }
 }
 
+.profile-info {
+  .info-row {
+    display: flex;
+    margin-bottom: 15px;
+  }
+
+  .user-label {
+    flex: 0 0 120px; // Fixed width for labels
+    color: $gray-700;
+    font-family: "Inter";
+    font-size: 16px;
+    font-weight: 500; // Medium
+    line-height: 150%;
+  }
+
+  .user-info {
+    flex: 1;
+    color: $gray-300;
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 400; // Regular
+    line-height: 150%;
+  }
+}
 
 
 // Use the mixins in your styles
