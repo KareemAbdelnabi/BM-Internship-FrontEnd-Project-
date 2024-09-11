@@ -2,7 +2,7 @@
 <div class="header-section">
   <div class="header-content">
     <div class="title">
-      <h1>Money Transfer</h1>
+      <h1>My Profile</h1>
       <div class="breadcrumb">
         <span>Home</span>
         <span>•</span>
@@ -20,16 +20,20 @@
     <div class="col-3">
       <div class="list-group">
         <a class="body-medium list-group-item list-group-item-action text-decoration-none"
-           routerLink="/profile" routerLinkActive="active" href="/user-profile/my-profile">My Profile</a>
+           [class.active]="isActive('/user-profile/my-profile')"
+           href="/user-profile/my-profile">My Profile</a>
 
         <a class="body-medium list-group-item list-group-item-action text-decoration-none"
-           routerLink="/payments-history" routerLinkActive="active" href="/user-profile/payments-history">Payments History</a>
+           [class.active]="isActive('/user-profile/payments-history')"
+           href="/user-profile/payments-history">Payments History</a>
 
         <a class="body-medium list-group-item list-group-item-action text-decoration-none"
-           routerLink="/settings" routerLinkActive="active" href="/user-profile/settings">Settings</a>
+           [class.active]="isActive('/user-profile/settings')"
+           href="/user-profile/settings">Settings</a>
 
         <a class="body-medium list-group-item list-group-item-action text-decoration-none"
-           routerLink="/change-password" routerLinkActive="active" href="/user-profile/change-password">Change Password</a>
+           [class.active]="isActive('/user-profile/change-password')"
+           href="/user-profile/change-password">Change Password</a>
       </div>
     </div>
 
