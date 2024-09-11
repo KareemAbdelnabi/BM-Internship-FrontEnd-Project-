@@ -1,10 +1,6 @@
 @import '../../../styles/typography.scss';
 @import '../../../styles/colors.scss';
 
-
-
-
-
 .header-section {
   background-image: url("/homebackg.png");
   background-size: cover;
@@ -41,7 +37,6 @@
         font-weight: 600;
         color: #24221e;
         margin-bottom: 10px;
-        font-family: "Inter", sans-serif;
       }
 
       .breadcrumb {
@@ -55,7 +50,6 @@
         .active {
           color: #871e35;
           font-weight: 500;
-          font-family: "Inter", sans-serif;
         }
       }
     }
@@ -68,44 +62,48 @@
     }
   }
 }
+
 .container {
   height: 80vh;
-  display: flex; /* Ensure the sidebar and content are in a flex container */
+  display: flex;
+  flex-direction: row;
 
   .col-3 {
-    border-right: 1px solid #ddd; /* Vertical line between sidebar and content */
-    padding: 0; /* Remove padding if there's any */
-    margin: 0; /* Remove margin if there's any */
-    height: 100%; /* Ensure full height of the container */
+    border-right: 1px solid #ddd;
+    padding: 0;
+    margin: 0;
+    height: 100%;
     width: 20vw;
+    position: relative;
+    box-sizing: border-box;
   }
 
   .col-9 {
-    padding-left: 20px; /* Adjust padding as needed */
-    flex: 1; /* Allow the content area to expand */
+    padding-left: 20px;
+    flex: 1;
     display: flex;
-    flex-direction: column; /* Ensure content is laid out in a column */
+    flex-direction: column;
   }
+
   .list-group-item {
     font-size: 1.2rem;
     border: none;
     color: #000;
-    border-bottom: 1px solid #ddd; /* Horizontal line between items */
-    transition: background-color 0.3s; /* Smooth background color transition */
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s;
 
     &:last-child {
-      border-bottom: none; /* Remove border from the last item */
+      border-bottom: none;
     }
 
     &:hover {
-      background-color: $gray-40; /* Change to a light gray */
-      border-radius: 0;
+      background-color: $gray-40;
       cursor: pointer;
     }
   }
 
   .list-group-item.active {
-    background-color:$gray-40;
+    background-color: $gray-40;
     color: $primary-300;
   }
 
@@ -113,6 +111,7 @@
     background-color: #fff;
     border-radius: 5px;
     flex: 1;
+    box-sizing: border-box;
   }
 
   .balance {
@@ -131,64 +130,33 @@
   }
 }
 
+// Responsive Design
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
 
+    .col-3 {
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid #ddd;
+    }
 
+    .col-9 {
+      padding-left: 0;
+    }
+  }
 
+  .header-section {
+    padding: 20px 0;
 
+    .header-content {
+      flex-direction: column;
+      align-items: flex-start;
 
-
-
-
-
-
-
-
-
-// Use the mixins in your styles
-h1 {
-  @include h1;
-}
-
-h2 {
-  @include h2;
-}
-
-h3 {
-  @include h3;
-}
-
-.title {
-  @include title;
-}
-
-.title-2 {
-  @include title2;
-}
-
-.small-title {
-  @include small-title;
-}
-
-.small-title-2 {
-  @include small-title2;
-}
-
-p {
-  @include paragraph;
-}
-
-p.bold {
-  @include paragraph-bold;
-}
-
-.body {
-  @include body;
-}
-
-.body.medium {
-  @include body-medium;
-}
-
-.small-font {
-  @include small-font;
+      .header-image {
+        margin-top: 20px;
+      }
+    }
+  }
 }

@@ -1,9 +1,14 @@
 @import '../../../../styles/typography.scss';
-@import '../../../../styles/colors';
+@import '../../../../styles/colors.scss';
 
 .profile-content {
-  max-width: 600px;
+  max-width: 100%;
   margin: 0 auto;
+  padding: 20px;
+
+  @media (min-width: 768px) {
+    max-width: 600px;
+  }
 }
 
 .profile-title {
@@ -26,74 +31,46 @@
 .profile-info {
   .info-row {
     display: flex;
+    flex-wrap: wrap;
     margin-bottom: 15px;
+    align-items: center;
   }
 
   .user-label {
-    flex: 0 0 120px; // Fixed width for labels
+    flex: 0 0 120px;
     color: $gray-700;
-    font-family: "Inter";
     font-size: 16px;
-    font-weight: 500; // Medium
-    line-height: 150%;
+    font-weight: 500;
   }
 
   .user-info {
     flex: 1;
     color: $gray-300;
-    font-family: 'Inter';
     font-size: 16px;
-    font-weight: 400; // Regular
-    line-height: 150%;
   }
 }
 
+// Responsive Design
+@media (max-width: 768px) {
+  .profile-title {
+    font-size: 1.2rem;
+  }
 
-// Use the mixins in your styles
-h1 {
-  @include h1;
+  .balance {
+    font-size: 3rem;
+
+    .balance-label {
+      font-size: 1.2rem;
+    }
+  }
+
+  .user-label {
+    flex: 1 1 100px; // Adjust for smaller screens
+  }
+
+  .user-info {
+    font-size: 14px;
+  }
 }
 
-h2 {
-  @include h2;
-}
-
-h3 {
-  @include h3;
-}
-
-.title {
-  @include title;
-}
-
-.title-2 {
-  @include title2;
-}
-
-.small-title {
-  @include small-title;
-}
-
-.small-title-2 {
-  @include small-title2;
-}
-
-p {
-  @include paragraph;
-}
-
-p.bold {
-  @include paragraph-bold;
-}
-
-.body {
-  @include body;
-}
-
-.body.medium {
-  @include body-medium;
-}
-
-.small-font {
-  @include small-font;
-}
+// Remove unused mixin includes if not necessary

@@ -1,25 +1,24 @@
-<div>
+<div class="payment-history-container">
   <h1 class="small-title">Payment History</h1>
   <div *ngIf="loading" class="loading-state">
-    <p>Loading...</p> <!-- Display a loading message -->
+    <p>Loading...</p>
   </div>
-  <!-- <div *ngIf="!loading && paymentHistory.length === 0">
-    <p>No payment history available.</p>
-  </div> -->
-  <div *ngIf="!loading && paymentHistory.length > 0">
-    <div *ngFor="let transaction of paymentHistory" class="card mb-4">
-      <div class="card-header body-medium header-color">
-        <span class="account-number">Account Number: {{ transaction.accountNumber }}</span>
-        <mat-icon class="file-icon" (click)="copyToClipboard(transaction.accountNumber)">file_copy</mat-icon>
+  <div *ngIf="!loading && paymentHistory.length > 0" class="transaction-list">
+    <div *ngFor="let transaction of paymentHistory" class="card">
+      <div class="card-header">
+        <span class="account-number">Account: {{ transaction.accountNumber }}</span>
+        <button class="copy-button" (click)="copyToClipboard(transaction.accountNumber)">
+          <mat-icon>file_copy</mat-icon>
+        </button>
       </div>
       <div class="card-body">
-        <div class="info-left">
-          <p class="mb-0 body-medium">Account Details</p>
-          <p class="mb-0 body info-color">Recipient Name</p>
+        <div class="info-group">
+          <p class="info-label">Account Details</p>
+          <p class="info-value">{{ transaction.amount }} EGP</p>
         </div>
-        <div class="info-right">
-          <p class="mb-0 body-medium">{{ transaction.amount }} EGP</p>
-          <p class="mb-0 body info-color">{{ transaction.recipientName }}</p>
+        <div class="info-group">
+          <p class="info-label">Recipient Name</p>
+          <p class="info-value">{{ transaction.recipientName }}</p>
         </div>
       </div>
     </div>

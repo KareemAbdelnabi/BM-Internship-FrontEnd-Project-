@@ -1,23 +1,26 @@
 <div class="profile-content" *ngIf="userProfile">
-  <h1 class="profile-title small-title-2">My Profile</h1>
+  <h1 class="profile-title">My Profile</h1>
 
-  <h1 class="h1 balance">{{ balance }} {{ userProfile.accounts[0]?.currency }}<span class="balance-label small-title">Balance</span></h1>
+  <h1 class="balance">
+    {{ balance }} {{ userProfile.accounts[0]?.currency }}
+    <span class="balance-label">Balance</span>
+  </h1>
 
   <div class="profile-info">
     <div class="info-row">
-      <span class="user-label body-medium">First Name :</span>
-      <span class="user-info body">{{ userProfile.name }}</span>
+      <span class="user-label">First Name:</span>
+      <span class="user-info">{{ userProfile.name }}</span>
     </div>
     <div class="info-row">
-      <span class="user-label">Email :</span>
+      <span class="user-label">Email:</span>
       <span class="user-info">{{ userProfile.email }}</span>
     </div>
     <div class="info-row">
-      <span class="user-label">Phone :</span>
+      <span class="user-label">Phone:</span>
       <span class="user-info">+880125412624</span>
     </div>
     <div class="info-row">
-      <span class="user-label">Gender :</span>
+      <span class="user-label">Gender:</span>
       <span class="user-info">Male</span>
     </div>
   </div>
