@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ChangePasswordService } from '../../../services/change-password.service'; // Import the service
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class ChangePasswordComponent implements OnInit {
   passwordForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
+  constructor(private formBuilder: FormBuilder, private changePasswordService: ChangePasswordService) {
     this.passwordForm = this.formBuilder.group({
       currentPassword: ['', Validators.required],
       newPassword: ['', Validators.required]
@@ -24,28 +24,15 @@ export class ChangePasswordComponent implements OnInit {
 
   onSubmit() {
     if (this.passwordForm.valid) {
-      // Retrieve id from local storage
       const id = localStorage.getItem('id');
-
-      // Retrieve token from session storage
       const token = sessionStorage.getItem('token');
 
       if (id && token) {
-        // Define the URL and headers
-        const url = `https://moneytransferapplication-production.up.railway.app/users/${id}/changepassword`;
-        const headers = new HttpHeaders({
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        });
+        const currentPassword = this.passwordForm.value.currentPassword;
+        const newPassword = this.passwordForm.value.newPassword;
 
-        // Prepare the body for the POST request
-        const body = {
-          currentPassword: this.passwordForm.value.currentPassword,
-          newPassword: this.passwordForm.value.newPassword
-        };
-
-        // Send POST request
-        this.http.put(url, body, { headers }).subscribe(
+        // Use the service to handle the password change
+        this.changePasswordService.changePassword(id, token, currentPassword, newPassword).subscribe(
           response => {
             console.log('Password changed successfully:', response);
           },
