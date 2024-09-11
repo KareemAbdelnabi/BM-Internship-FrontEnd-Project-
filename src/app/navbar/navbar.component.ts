@@ -2,6 +2,9 @@ import { Component, OnInit, Inject, PLATFORM_ID, OnDestroy } from '@angular/core
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule, NgIf } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +22,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   private storageEventListener: any;
 
-  constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: Object) { }
+  constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: Object, private http: HttpClient) { }
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -51,7 +54,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
       const token = sessionStorage.getItem('token');
       this.tokenExists = !!token;  
 
-
       if (!this.tokenExists) {
         this.showDropdown = false;  
       }
@@ -62,7 +64,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       this.username = sessionStorage.getItem('username') || '';
       this.userId = sessionStorage.getItem('id');
-
     }
   }
 
@@ -74,21 +75,41 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   logout() {
     if (isPlatformBrowser(this.platformId)) {
+      // Clear session and local storage
       sessionStorage.removeItem('token');
       sessionStorage.removeItem('username');
       sessionStorage.removeItem('id');
+      localStorage.removeItem('senderAccount');
+      localStorage.removeItem('senderName');
+      localStorage.removeItem('id');
       
-      sessionStorage.clear(); 
-
-      this.tokenExists = false;
-      this.username = '';
-      this.userId = null;
-      this.showDropdown = false;
-
-      console.log('User has logged out.');
-
-      // Navigate to the login page
-      this.router.navigate(['/login']);
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+      });
+  
+      // Call the API to log out
+      this.http.post('https://moneytransferapplication-production.up.railway.app/auth/logout', {}, { headers, responseType: 'text' })
+        .pipe(
+          catchError(error => {
+            console.error('Logout failed:', error);
+            return throwError(error);
+          })
+        )
+        .subscribe(response => {
+          console.log('Logout successful:', response);  
+  
+          // Clear session storage
+          sessionStorage.clear();
+          
+          // Reset component state
+          this.tokenExists = false;
+          this.username = '';
+          this.userId = null;
+          this.showDropdown = false;
+  
+          // Navigate to the login page
+          this.router.navigate(['/login']);
+        });
     }
   }
 }
