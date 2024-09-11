@@ -40,7 +40,7 @@ export class InactivityService {
 
   private logoutUser(): void {
     sessionStorage.removeItem('token'); // Clear the token
-    this.router.navigate(['/login'], { queryParams: { loggedOut: true } });
+    this.router.navigate(['/login'], { queryParams: { loggedOut: true ,userCancelled: true } }); // Redirect to login page
   }
 
 }

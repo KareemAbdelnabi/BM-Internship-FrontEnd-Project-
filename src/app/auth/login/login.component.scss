@@ -16,6 +16,9 @@ html, body {
   flex: 1; // This will push the footer to the bottom
 }
 
+.closing{
+  cursor: pointer;
+}
 .icon{
   width: 48px;
   height: 48px;

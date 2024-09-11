@@ -5,6 +5,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterOutlet } from '@angular/router';
 import { LoginService } from '../../services/login.service';  // Import the service
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-login',
@@ -17,13 +19,14 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   showPassword: boolean = false;
   showLoggedOutMessage: boolean = false; // Property to control message visibility
+  userCancelled: boolean = false; // Property to control if user cancelled
 
   // Inject the service, router, and route
   loginService = inject(LoginService);
   router = inject(Router);
   route = inject(ActivatedRoute);
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private toastr: ToastrService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6), this.passwordStrengthValidator]]
@@ -34,6 +37,9 @@ export class LoginComponent implements OnInit {
     // Check if 'loggedOut' query parameter is present
     this.route.queryParams.subscribe(params => {
       this.showLoggedOutMessage = params['loggedOut'] === 'true';
+    });
+    this.route.queryParams.subscribe(params => {
+      this.userCancelled = params['userCancelled'] === 'true';
     });
   }
 
@@ -78,10 +84,17 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         console.error('Login failed:', error);
-        // Handle login error (e.g., display error message)
+
+        // Display appropriate toast notification based on error response
+        if (error.error && error.error === 'Incorrect email or password') {
+          this.toastr.error('Incorrect email or password');
+        } else {
+          this.toastr.error('Couldn\'t log in. Please try again later.');
+        }
       }
     );
   }
+
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
@@ -89,6 +102,10 @@ export class LoginComponent implements OnInit {
 
   onCloseClick() {
     this.router.navigate(['/home']);
+  }
+
+  onCloseIconClick() {
+    this.userCancelled = false;
   }
 
   get email() {
