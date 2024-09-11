@@ -62,8 +62,27 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  get buttonLabel1(): string {
+    return this.hasToken ? 'Transfer Now' : 'Create An Account';
+  }
+
+  onButtonClick1() { 
+    if (this.hasToken) {
+      this.router.navigate(['/money-transfer']); 
+    } else {
+      this.router.navigate(['/register']); 
+    }
+  }
   get buttonLabel(): string {
-    return this.hasToken ? 'Transfer Now' : 'Continue';
+    return this.hasToken ? 'Continue' : 'Continue';
+    
+  }
+  onButtonClick() {
+    if (this.hasToken) {
+      this.router.navigate(['/money-transfer']); 
+    } else {
+      this.router.navigate(['/login']); 
+    }
   }
 
   logout() {

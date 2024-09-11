@@ -9,14 +9,20 @@
           Fast, secure, and affordable international money transfers. Get
           started in minutes
         </p>
-        <button class="btn primary-btn">{{ buttonLabel }}</button>
+        <button class="btn primary-btn" (click)="onButtonClick1()">
+          {{ buttonLabel1 }}
+        </button>
       </div>
 
       <div class="form-content">
         <form>
           <div class="form-group balance-container" *ngIf="hasToken">
-            <label for="currentBalance" class="balance-label">Current Balance</label>
-            <div class="balance-display highlighted-balance">{{ currentBalance }}EGP</div>
+            <label for="currentBalance" class="balance-label"
+              >Current Balance</label
+            >
+            <div class="balance-display highlighted-balance">
+              {{ currentBalance }}EGP
+            </div>
           </div>
 
           <div class="form-group">
@@ -31,8 +37,9 @@
             </label>
           </div>
 
-          <button class="btn secondary-btn">{{ buttonLabel }}</button>
-
+          <button class="btn primary-btn" (click)="onButtonClick()">
+            {{ buttonLabel }}
+          </button>
           <p class="terms">
             By Clicking Continue, I agree with <a href="#">Terms & Policy</a>
           </p>
@@ -45,14 +52,17 @@
 <section class="getting-started">
   <div class="container">
     <h2 class="section-heading">Getting Started</h2>
-    <p class="section-subheading">Lorem Ipsum is simply dummy text of the printing.</p>
+    <p class="section-subheading">
+      Lorem Ipsum is simply dummy text of the printing.
+    </p>
     <div class="steps">
       <div class="step">
         <img src="createpic.png" alt="Create Account Icon" />
         <div class="step-text">
           <h3><span class="number">1.</span> Create Account</h3>
           <p>
-            Adipisicing elit id neque mi diam nim etus arcu porta veniam pretium auctor ut et nam sed.
+            Adipisicing elit id neque mi diam nim etus arcu porta veniam pretium
+            auctor ut et nam sed.
           </p>
         </div>
       </div>
@@ -61,7 +71,8 @@
         <div class="step-text">
           <h3><span class="number">2.</span> Confirmation</h3>
           <p>
-            Adipisicing elit id neque mi diam nim etus arcu porta veniam pretium auctor ut et nam sed.
+            Adipisicing elit id neque mi diam nim etus arcu porta veniam pretium
+            auctor ut et nam sed.
           </p>
         </div>
       </div>
@@ -70,7 +81,8 @@
         <div class="step-text">
           <h3><span class="number">3.</span> Payment</h3>
           <p>
-            Adipisicing elit id neque mi diam nim etus arcu porta veniam pretium auctor ut et nam sed.
+            Adipisicing elit id neque mi diam nim etus arcu porta veniam pretium
+            auctor ut et nam sed.
           </p>
         </div>
       </div>
