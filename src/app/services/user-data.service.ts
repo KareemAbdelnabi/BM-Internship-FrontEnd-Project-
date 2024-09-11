@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProfileService {
-  private baseUrl = 'https://moneytransferapplication-production.up.railway.app/users/test/';
+  private baseUrl = 'https://moneytransferapplication-production.up.railway.app/users/id';
 
   constructor(private http: HttpClient) {}
 
@@ -15,7 +15,7 @@ export class ProfileService {
       'Authorization': `Bearer ${token}`
     });
 
-    const url = `${this.baseUrl}${id}`;
-    return this.http.get(url, { headers });
+    // const url = `${this.baseUrl}`;
+    return this.http.get(this.baseUrl, { headers });
   }
 }
