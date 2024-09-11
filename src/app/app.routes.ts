@@ -13,13 +13,14 @@ import { MyProfileComponent } from './components/user-profile/my-profile/my-prof
 import { ChangePasswordComponent } from './components/user-profile/change-password/change-password.component';
 import { RegistrationFormComponent } from './auth/registration-form/registration-form.component';
 import { ErrorComponent } from './error/error.component';
+import { AuthGuard } from './auth.guard';
 // import { RegisterComponent } from './register/register.component';
 // import { NotFoundComponent } from './not-found/not-found.component'; // Assuming you have a 404 component
 
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'money-transfer', component: MoneyTransferComponent },
+  { path: 'money-transfer', component: MoneyTransferComponent , canActivate: [AuthGuard]},
   // { path: 'my-account', component: MyAccountComponent },
   { path: 'help', component: HelpComponent },
   { path: 'login', component: LoginComponent },
@@ -27,6 +28,7 @@ export const routes: Routes = [
   {
     path: 'user-profile',
     component: UserProfileComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'settings', component: SettingsComponent },
       { path: 'payments-history', component: PaymentHistoryComponent },
