@@ -110,64 +110,75 @@
     justify-content: space-around;
     align-items: center;
     margin-bottom: 20px;
-
-    span {
-      position: relative;
+  
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
+  
+    .step-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      border: 2px solid #ccc; 
       font-weight: bold;
       color: #ccc;
-      line-height: 1;
-      vertical-align: middle;
-
-      &.active,
-      &::before {
+      margin-bottom: 10px;
+  
+      &.active {
         border-color: #871e35;
         color: #871e35;
       }
-
-      &::before {
-        content: attr(data-step);
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
     }
-
-    .stepper span + span::before {
-      content: "";
-      flex-grow: 1;
-      height: 2px;
-      background-color: #ccc;
-      margin: 0 5px;
-    }
-  }
-  .stepper-labels {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-
-    @media (max-width: 768px) {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    span {
+  
+    .step-label {
       font-size: 14px;
       font-weight: 500;
       color: #888;
-
-      @media (max-width: 768px) {
-        margin-top: 5px;
+  
+      &.active {
+        color: #871e35;
+      }
+    }
+  
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: stretch;
+  
+      .step {
+        margin-bottom: 15px; /* Adds space between steps on mobile */
+      }
+  
+      .step-circle {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+      }
+  
+      .step-label {
+        font-size: 16px;
+      }
+    }
+  
+    @media (max-width: 480px) {
+      .step-circle {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+      }
+  
+      .step-label {
+        font-size: 14px;
       }
     }
   }
+  
 
   h2 {
     font-family: "Inter", sans-serif;
