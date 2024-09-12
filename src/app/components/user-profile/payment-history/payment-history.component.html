@@ -1,26 +1,37 @@
 <div class="payment-history-container">
   <h1 class="small-title">Payment History</h1>
+
+  <!-- Loading state -->
   <div *ngIf="loading" class="loading-state">
     <p>Loading...</p>
   </div>
+
+  <!-- If payment history exists -->
   <div *ngIf="!loading && paymentHistory.length > 0" class="transaction-list">
-    <div *ngFor="let transaction of paymentHistory" class="card">
-      <div class="card-header">
-        <span class="account-number">Account: {{ transaction.accountNumber }}</span>
-        <button class="copy-button" (click)="copyToClipboard(transaction.accountNumber)">
-          <mat-icon>file_copy</mat-icon>
-        </button>
-      </div>
-      <div class="card-body">
-        <div class="info-group">
-          <p class="info-label">Account Details</p>
-          <p class="info-value">{{ transaction.amount }} EGP</p>
+    <div class="scrollable-container">
+      <div *ngFor="let transaction of paymentHistory" class="card">
+        <div class="card-header">
+          <span class="account-number">Account: {{ transaction.accountNumber }}</span>
+          <button class="copy-button" (click)="copyToClipboard(transaction.accountNumber)">
+            <mat-icon>file_copy</mat-icon>
+          </button>
         </div>
-        <div class="info-group">
-          <p class="info-label">Recipient Name</p>
-          <p class="info-value">{{ transaction.recipientName }}</p>
+        <div class="card-body">
+          <div class="info-group">
+            <p class="info-label">Account Details</p>
+            <p class="info-value">{{ transaction.amount }} EGP</p>
+          </div>
+          <div class="info-group">
+            <p class="info-label">Recipient Name</p>
+            <p class="info-value">{{ transaction.recipientName }}</p>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- If no payment history -->
+  <div *ngIf="!loading && paymentHistory.length === 0" class="no-transactions">
+    <p>No transactions</p>
   </div>
 </div>
