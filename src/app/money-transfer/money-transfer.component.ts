@@ -4,13 +4,20 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { MobileappsharedComponent } from '../mobileappshared/mobileappshared.component';
 import { FooterComponent } from '../footer/footer.component';
-import { HttpClient, HttpHeaders  } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router'; // Import Router
 
 @Component({
   selector: 'app-money-transfer',
   standalone: true,
-  imports: [FormsModule, CommonModule, NavbarComponent, MobileappsharedComponent, FooterComponent],
+  imports: [
+    FormsModule,
+    CommonModule,
+    NavbarComponent,
+    MobileappsharedComponent,
+    FooterComponent,
+  ],
   templateUrl: './money-transfer.component.html',
   styleUrls: ['./money-transfer.component.scss'],
 })
@@ -27,7 +34,9 @@ export class MoneyTransferComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private router: Router // Inject the router
+
   ) {}
 
   ngOnInit() {
@@ -48,28 +57,39 @@ export class MoneyTransferComponent implements OnInit {
 
         if (!this.senderName || !this.senderAccount) {
           const headers = new HttpHeaders({
-            'Authorization': `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
           });
 
-          // Updated with the static API URL
-          this.http.get('https://moneytransferapplication-production.up.railway.app/users/id', { headers })
-            .subscribe((response: any) => {
-              if (response && response.accounts && response.accounts.length > 0) {
-                this.senderName = response.name;
-                this.senderAccount = response.accounts[0].accountNumber;
+          this.http
+            .get(
+              'https://moneytransferapplication-production.up.railway.app/users/id',
+              { headers }
+            )
+            .subscribe(
+              (response: any) => {
+                if (
+                  response &&
+                  response.accounts &&
+                  response.accounts.length > 0
+                ) {
+                  this.senderName = response.name;
+                  this.senderAccount = response.accounts[0].accountNumber;
 
-                localStorage.setItem('senderName', this.senderName);
-                localStorage.setItem('senderAccount', this.senderAccount);
-              } else {
-                console.error('No account information found in the API response.');
+                  localStorage.setItem('senderName', this.senderName);
+                  localStorage.setItem('senderAccount', this.senderAccount);
+                } else {
+                  console.error(
+                    'No account information found in the API response.'
+                  );
+                }
+              },
+              (error) => {
+                console.error('Error fetching sender details:', error);
               }
-            }, (error) => {
-              console.error('Error fetching sender details:', error);
-            });
+            );
         }
       } else {
         console.error('User ID not found in local storage.');
-        // Handle the error (e.g., redirect to login or show an error message)
       }
     }
   }
@@ -79,51 +99,84 @@ export class MoneyTransferComponent implements OnInit {
       const userId = localStorage.getItem('id');
 
       if (userId) {
-        this.http.get(`https://moneytransferapplication-production.up.railway.app/users/${userId}/favorites`)
-          .subscribe((response: any) => {
-            this.favorites = response;
-          }, (error) => {
-            console.error('Error fetching favorites:', error);
-            // Handle the error appropriately (e.g., show an error message)
-          });
+        this.http
+          .get(
+            `https://moneytransferapplication-production.up.railway.app/users/${userId}/favorites`
+          )
+          .subscribe(
+            (response: any) => {
+              this.favorites = response;
+            },
+            (error) => {
+              console.error('Error fetching favorites:', error);
+            }
+          );
       } else {
         console.error('User ID not found in local storage.');
-        // Handle the error (e.g., redirect to login or show an error message)
       }
     }
   }
 
   nextStep() {
     if (this.step === 2) {
-      this.initiateTransfer();
+      if (this.validateTransferDetails()) {
+        this.initiateTransfer();
+      } else {
+        console.error('Invalid transfer details.');
+      }
     } else if (this.step < 3) {
       this.step++;
     }
   }
 
-  initiateTransfer() {
-    if (isPlatformBrowser(this.platformId)) { 
-      const senderId = localStorage.getItem('id');
+  validateTransferDetails(): boolean {
+    return (
+      this.recipientName !== '' &&
+      this.recipientAccount !== '' &&
+      this.amount > 0
+    );
+  }
 
-      if (senderId) {
+  initiateTransfer() {
+    if (isPlatformBrowser(this.platformId)) {
+      const senderId = localStorage.getItem('id');
+      const token = sessionStorage.getItem('token');
+
+      if (senderId && token) {
         const transferData = {
           senderId: parseInt(senderId, 10),
           recipientName: this.recipientName,
           recipientAccountNumber: this.recipientAccount,
-          amount: this.amount
+          amount: this.amount,
         };
 
-        this.http.post('https://moneytransferapplication-production.up.railway.app/transfer', transferData)
-          .subscribe((response: any) => {
-            console.log('Transfer successful:', response);
-            this.step++;
-          }, (error) => {
-            console.error('Error during transfer:', error);
-            // Add your error handling logic here (e.g., show an error message to the user)
-          });
+        console.log('Transfer data:', transferData); // Debugging log
+
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        });
+
+        this.http
+          .post(
+            'https://moneytransferapplication-production.up.railway.app/transfer',
+            transferData,
+            { headers }
+          )
+          .subscribe(
+            (response: any) => {
+              console.log('Transfer successful:', response);
+              this.step++;
+            },
+            (error) => {
+              console.error('Error during transfer:', error);
+              if (error.error && error.error.message) {
+                console.error('API error message:', error.error.message);
+              }
+            }
+          );
       } else {
-        console.error('Sender ID not found in local storage.');
-        // Add your error handling logic here (e.g., redirect to login or show an error message)
+        console.error('Sender ID or token not found.');
       }
     }
   }
@@ -139,6 +192,8 @@ export class MoneyTransferComponent implements OnInit {
     this.amount = 1000;
     this.recipientName = '';
     this.recipientAccount = '';
+    this.router.navigate(['/home']); // Navigate to home page
+
   }
 
   toggleFavorites() {
@@ -158,20 +213,25 @@ export class MoneyTransferComponent implements OnInit {
       if (userId) {
         const favoriteData = {
           recipientName: this.recipientName,
-          recipientAccountNumber: this.recipientAccount
+          recipientAccountNumber: this.recipientAccount,
         };
 
-        this.http.post(`https://moneytransferapplication-production.up.railway.app/users/${userId}/favorites`, favoriteData)
-          .subscribe((response: any) => {
-            console.log('Favorite added successfully:', response);
-            this.fetchFavorites(); 
-          }, (error) => {
-            console.error('Error adding favorite:', error);
-            // Handle the error appropriately (e.g., show an error message to the user)
-          });
+        this.http
+          .post(
+            `https://moneytransferapplication-production.up.railway.app/users/${userId}/favorites`,
+            favoriteData
+          )
+          .subscribe(
+            (response: any) => {
+              console.log('Favorite added successfully:', response);
+              this.fetchFavorites();
+            },
+            (error) => {
+              console.error('Error adding favorite:', error);
+            }
+          );
       } else {
         console.error('User ID not found in local storage.');
-        // Handle the error (e.g., redirect to login or show an error message)
       }
     }
   }

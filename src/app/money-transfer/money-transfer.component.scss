@@ -88,7 +88,7 @@
   border-radius: 10px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   font-family: "Inter", sans-serif;
-  
+
   .confirm-button {
     width: 100%;
     background-color: #871e35;
@@ -108,45 +108,44 @@
   .stepper {
     display: flex;
     justify-content: space-around;
-    align-items: center; 
-    margin-bottom: 20px; 
-  
+    align-items: center;
+    margin-bottom: 20px;
+
     span {
-      position: relative; 
+      position: relative;
       display: flex;
-      align-items: center;   
+      align-items: center;
       justify-content: center;
-      width: 30px;           
-      height: 30px;          
-      border-radius: 50%;    
-      border: 2px solid #ccc; /* Default border color */
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid #ccc; 
       font-weight: bold;
-      color: #ccc;           
-      line-height: 1;        
-      vertical-align: middle; 
- 
-      
+      color: #ccc;
+      line-height: 1;
+      vertical-align: middle;
+
       &.active,
-      &::before { /* Style both the active step and all steps before it */
-        border-color: #871e35; 
-        color: #871e35;        
-      }
-  
       &::before {
-        content: attr(data-step); 
+        border-color: #871e35;
+        color: #871e35;
+      }
+
+      &::before {
+        content: attr(data-step);
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%); 
+        transform: translate(-50%, -50%);
       }
     }
-  
-    .stepper span + span::before {  /* Add a line before each span except the first */
-      content: '';
-      flex-grow: 1;         /* Make the line take up available space */
-      height: 2px;          /* Adjust line thickness */
-      background-color: #ccc;/* Gray line for inactive steps */
-      margin: 0 5px;        /* Add some space around the line */
+
+    .stepper span + span::before {
+      content: "";
+      flex-grow: 1;
+      height: 2px;
+      background-color: #ccc;
+      margin: 0 5px;
     }
   }
   .stepper-labels {
@@ -171,6 +170,8 @@
   }
 
   h2 {
+    font-family: "Inter", sans-serif;
+
     font-size: 40px;
     margin-bottom: 20px;
     font-weight: 600;
@@ -269,19 +270,18 @@
       }
 
       .favorite-icon {
-        width: 50px; 
+        width: 50px;
         height: 50px;
         margin-right: 15px;
         display: flex;
         justify-content: center;
         align-items: center;
-  
-        img { // Target the image inside .favorite-icon
-          width: 50px; // Set the width
-          height: 50px; // Set the height
+
+        img {
+          width: 50px;
+          height: 50px;
         }
       }
-  
 
       .favorite-details {
         p {
@@ -304,10 +304,9 @@
   }
 }
 
-
-  // ... (previous styles for .header-section and .step-container)
-
 .confirmation-container {
+  font-family: "Inter", sans-serif;
+
   text-align: center;
   max-width: 600px;
   margin: 40px auto;
@@ -317,7 +316,7 @@
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
-    max-width: 90%; 
+    max-width: 90%;
   }
 
   .total-amount {
@@ -339,6 +338,9 @@
     gap: 20px;
 
     .account-info {
+      font-size: 20px;
+      font-weight: 600;
+      color: #3c3a37;
       display: flex;
       align-items: center;
       background-color: #f7f7f7;
@@ -346,13 +348,13 @@
       border-radius: 10px;
       width: 100%;
       box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
-      img.transaction-bank-icon { // Target the new class
-        width: 50px;  
-        height: 50px; 
+      img.transaction-bank-icon {
+        width: 50px;
+        height: 50px;
         margin-right: 15px;
-  
+
         @media (max-width: 768px) {
-          margin-bottom: 10px; 
+          margin-bottom: 10px;
         }
       }
       img.bank-icon {
@@ -362,15 +364,22 @@
       }
 
       .label {
-        font-size: 14px;
+        font-family: "Inter", sans-serif;
+
+        font-size: 20px;
+        font-weight: 600;
+        color: #3c3a37;
         font-weight: 600;
         text-align: left;
         color: #871e35;
       }
 
       .account-number {
-        font-size: 14px;
-        color: #666;
+        font-size: 16px;
+        font-weight: 400;
+        color: #898886;
+        font-family: "Inter", sans-serif;
+
       }
     }
 
@@ -421,7 +430,7 @@
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
-    max-width: 90%; 
+    max-width: 90%;
   }
 
   .success-icon {
@@ -438,6 +447,8 @@
     margin-bottom: 10px;
     font-weight: 600;
     color: #333;
+    font-family: "Inter", sans-serif;
+
   }
 
   .transfer-amount {
@@ -465,7 +476,7 @@
       box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
 
       @media (max-width: 768px) {
-        flex-direction: column; 
+        flex-direction: column;
         align-items: center;
       }
 
@@ -475,7 +486,7 @@
         margin-right: 15px;
 
         @media (max-width: 768px) {
-          margin-bottom: 10px; 
+          margin-bottom: 10px;
         }
       }
 
@@ -488,8 +499,9 @@
 
       p {
         margin: 0;
-        font-size: 16px;
-        color: #666;
+        font-size: 20px;
+        font-weight: 600;
+        color: #3c3a37;
       }
 
       .account-number {
