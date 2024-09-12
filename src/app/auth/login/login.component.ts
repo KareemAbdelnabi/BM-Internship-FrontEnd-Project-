@@ -5,7 +5,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterOutlet } from '@angular/router';
 import { LoginService } from '../../services/login.service';  // Import the service
 import { ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+// import { ToastrService } from 'ngx-toastr';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 
 @Component({
@@ -26,7 +28,7 @@ export class LoginComponent implements OnInit {
   router = inject(Router);
   route = inject(ActivatedRoute);
 
-  constructor(private fb: FormBuilder,private toastr: ToastrService) {
+  constructor(private fb: FormBuilder,private snackBar: MatSnackBar) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6), this.passwordStrengthValidator]]
@@ -87,9 +89,11 @@ export class LoginComponent implements OnInit {
 
         // Display appropriate toast notification based on error response
         if (error.error && error.error === 'Incorrect email or password') {
-          this.toastr.error('Incorrect email or password');
+          // this.toastr.error('Incorrect email or password');
+          this.snackBar.open('Incorrect email or password', 'Close', { duration: 5000 });
         } else {
-          this.toastr.error('Couldn\'t log in. Please try again later.');
+          // this.toastr.error('Couldn\'t log in. Please try again later.');
+          this.snackBar.open('Couldn\'t log in. Please try again later.', 'Close', { duration: 5000 });
         }
       }
     );
